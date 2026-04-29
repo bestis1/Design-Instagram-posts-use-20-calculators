@@ -1,21 +1,37 @@
-<html dir="ltr" lang="en">
+v<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Template Generator</title>
     <style>
-        /* --- Original Styles --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ================================================
+           CSS STYLES - EASY TO CUSTOMIZE
+           ================================================
+           HOW TO MODIFY:
+           - Change colors: look for "background", "color" properties
+           - Change spacing: look for "padding", "margin", "gap"
+           - Change fonts: look for "font-family", "font-size"
+           - All main colors are at the top of body gradient
+        ================================================ */
+
+        /* RESET - removes default margins/paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* MAIN BACKGROUND - YOU CAN CHANGE THESE GRADIENT COLORS */
         body {
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            /* EDIT THESE 3 COLORS TO CHANGE THE MAIN BACKGROUND GRADIENT */
             background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
             min-height: 100vh;
-            padding-top: env(safe-area-inset-top, 20px);
-            padding-bottom: env(safe-area-inset-bottom, 20px);
-            padding-left: env(safe-area-inset-left, 20px);
-            padding-right: env(safe-area-inset-right, 20px);
-            transition: background-color 0.3s;
+            padding: 20px;
         }
+
+        /* MAIN WHITE CONTAINER CARD */
         .container {
             max-width: 1600px;
             margin: 0 auto;
@@ -23,53 +39,103 @@
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            transition: background-color 0.3s;
         }
 
-        /* --- NEW HEADER STYLE --- */
+        /* HEADER SECTION - EDIT TEXT AND COLORS HERE */
         .header {
+            /* EDIT THESE 3 COLORS FOR THE HEADER GRADIENT */
             background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
             color: white;
-            padding: 20px;
-            text-align: left;
-            display: flex;
-            align-items: center;
+            padding: 35px;
+            text-align: center;
             position: relative;
-        }
-        .header-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.9);
-            flex-shrink: 0;
-        }
-        .header-content h1 {
-            font-size: 2.2em;
-            font-weight: 800;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            line-height: 1.2;
-        }
-        .header-content p {
-            font-size: 1.1em;
-            color: rgba(255, 255, 255, 0.95);
-            margin-top: 5px;
+            overflow: hidden;
         }
 
-        .main-content { display: grid; grid-template-columns: 380px 1fr; min-height: 700px; }
-        .controls { background: #f8f9fc; padding: 30px; border-right: 1px solid #e9ecf5; overflow-y: auto; max-height: 800px; }
-        .control-group { margin-bottom: 25px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: all 0.3s; }
-        .control-group label { display: block; margin-bottom: 10px; font-weight: 700; color: #2c3e50; font-size: 0.95em; }
-        .template-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        /* Animated background effect (optional, can remove) */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* HEADER TITLE - EDIT FONT SIZE AND COLOR HERE */
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER SUBTITLE - EDIT HERE */
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* TWO COLUMN LAYOUT: CONTROLS (LEFT) + PREVIEW (RIGHT) */
+        .main-content {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            min-height: 700px;
+        }
+
+        /* LEFT PANEL - ALL CONTROLS/CUSTOMIZATIONS */
+        .controls {
+            background: #f8f9fc;
+            padding: 30px;
+            border-right: 1px solid #e9ecf5;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+
+        /* EACH CONTROL CARD - EDIT BACKGROUND AND SHADOW HERE */
+        .control-group {
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .control-group:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* LABELS - EDIT TEXT COLOR HERE */
+        .control-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 0.95em;
+        }
+
+        /* TEMPLATE BUTTONS GRID */
+        .template-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* EACH TEMPLATE BUTTON - EDIT COLORS HERE */
         .template-btn {
             padding: 15px 10px;
             border: 2px solid #e9ecf5;
@@ -82,26 +148,110 @@
             text-align: center;
             color: #2c3e50;
         }
-        .template-btn:hover { border-color: #833ab4; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(131, 58, 180, 0.3); }
-        .template-btn.active { background: linear-gradient(135deg, #833ab4, #fd1d1d); color: white; border-color: transparent; }
-        .template-btn:focus {
-            outline: 2px solid #833ab4;
-            outline-offset: 2px;
+
+        .template-btn:hover {
+            border-color: #833ab4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(131, 58, 180, 0.3);
         }
-        input[type="text"], textarea, input[type="number"], input[type="date"] {
+
+        /* ACTIVE TEMPLATE BUTTON - EDIT GRADIENT COLORS HERE */
+        .template-btn.active {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(131, 58, 180, 0.3);
+        }
+
+        /* INPUT FIELDS - TEXT, TEXTAREA */
+        input[type="text"], textarea {
             width: 100%;
             padding: 12px;
             border: 2px solid #e9ecf5;
             border-radius: 10px;
             font-size: 0.95em;
             font-family: inherit;
-            transition: border 0.3s, background-color 0.3s, color 0.3s;
+            transition: all 0.3s;
         }
-        input[type="text"]:focus, textarea:focus, input[type="number"]:focus, input[type="date"]:focus { outline: none; border-color: #833ab4; }
-        textarea { resize: vertical; min-height: 80px; }
-        input[type="color"] { width: 100%; height: 50px; border: none; border-radius: 10px; cursor: pointer; }
-        .color-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .color-item label { font-size: 0.85em; margin-bottom: 8px; display: block; }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #833ab4;
+            box-shadow: 0 0 0 3px rgba(131, 58, 180, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* COLOR PICKERS */
+        input[type="color"] {
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        input[type="color"]:hover {
+            transform: scale(1.05);
+        }
+
+        /* SLIDER (RANGE INPUT) */
+        input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: #e9ecf5;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #833ab4, #fd1d1d);
+            cursor: pointer;
+        }
+
+        /* RANGE VALUE DISPLAY */
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .range-value {
+            min-width: 50px;
+            text-align: center;
+            font-weight: 600;
+            color: #833ab4;
+            background: #f0f2ff;
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        /* TWO COLOR PICKERS SIDE BY SIDE */
+        .color-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .color-item label {
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* DROPDOWN SELECT */
         select {
             width: 100%;
             padding: 12px;
@@ -110,11 +260,38 @@
             font-size: 0.95em;
             background: white;
             cursor: pointer;
-            transition: all 0.3s;
         }
-        .preview { background: #f0f2f8; display: flex; align-items: center; justify-content: center; padding: 40px; position: relative; }
-        #canvas { max-width: 100%; max-height: 100%; border-radius: 15px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); }
-        .action-buttons { padding: 25px 35px; background: #f8f9fc; border-top: 2px solid #e9ecf5; display: flex; gap: 15px; flex-wrap: wrap; }
+
+        /* RIGHT PANEL - PREVIEW AREA */
+        .preview {
+            background: #f0f2f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        /* THE CANVAS WHERE THE DESIGN IS DRAWN */
+        #canvas {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s;
+        }
+
+        /* BOTTOM ACTION BUTTONS BAR */
+        .action-buttons {
+            padding: 25px 35px;
+            background: #f8f9fc;
+            border-top: 2px solid #e9ecf5;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* ALL BUTTONS STYLES */
         .btn {
             padding: 14px 28px;
             border: none;
@@ -125,463 +302,167 @@
             font-size: 0.95em;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        .btn-primary { background: linear-gradient(135deg, #833ab4, #fd1d1d); color: white; }
-        .btn-accent { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); }
-        .btn:focus {
-            outline: 2px solid #833ab4;
-            outline-offset: 2px;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* BUTTON ANIMATION */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* DOWNLOAD BUTTON - EDIT GRADIENT COLORS HERE */
+        .btn-primary {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d);
+            color: white;
+            box-shadow: 0 4px 15px rgba(131, 58, 180, 0.3);
+        }
+
+        /* SHARE BUTTON - EDIT GRADIENT COLORS HERE */
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* RANDOM BUTTON - EDIT GRADIENT COLORS HERE */
+        .btn-accent {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* NOTIFICATION TOAST */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        /* RESPONSIVE DESIGN - FOR TABLETS AND MOBILES */
         @media (max-width: 1024px) {
-            .main-content { grid-template-columns: 1fr; }
-            .controls { border-right: none; border-bottom: 2px solid #e9ecf5; max-height: none; }
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .controls {
+                border-right: none;
+                border-bottom: 2px solid #e9ecf5;
+                max-height: none;
+            }
         }
 
         @media (max-width: 768px) {
-            .header-content h1 { font-size: 1.8em; }
-            .template-selector { grid-template-columns: 1fr; }
-        }
-
-        /* --- NEW STYLES FOR CALCULATORS & FOOTER --- */
-        .view { display: none; }
-        .view.active { display: block; }
-        .nav-buttons { display: flex; justify-content: center; gap: 10px; padding: 10px 20px; background: #f8f9fc; border-bottom: 2px solid #e9ecf5; }
-        .nav-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            color: #2c3e50;
-        }
-        .nav-btn.active { background: linear-gradient(135deg, #833ab4, #fd1d1d); color: white; }
-        .nav-btn:focus {
-            outline: 2px solid #833ab4;
-            outline-offset: 2px;
-        }
-
-        .footer {
-            background: #1a252f;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .footer-content { max-width: 1200px; margin: 0 auto; }
-        .calculator-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .calc-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9em;
-        }
-        .calc-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
-        .calc-btn:focus {
-            outline: 2px solid #833ab4;
-            outline-offset: 2px;
-        }
-        .contact-info { margin-top: 20px; font-size: 0.9em; opacity: 0.8; }
-        .contact-info strong { display: block; font-size: 1.2em; margin-bottom: 10px; opacity: 1; }
-        .calculator-container { padding: 30px; max-width: 800px; margin: 20px auto; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .calculator-container h2 { text-align: center; margin-bottom: 20px; color: #2c3e50; }
-        .calc-group { margin-bottom: 20px; }
-        .calc-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #34495e; }
-
-        /* --- UPDATED STYLE FOR EDGE-TO-EDGE RESULTS --- */
-        .calc-result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f0f2f8;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #833ab4;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.5;
-            box-sizing: border-box;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
-            padding-left: calc(env(safe-area-inset-left) + 15px);
-            padding-right: calc(env(safe-area-inset-right) + 15px);
-        }
-
-        .calc-result:focus {
-            outline: 2px dashed #833ab4;
-            outline-offset: 2px;
-        }
-
-        .calc-btn-calculate {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .calc-btn-calculate:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .gpa-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        .gpa-table th, .gpa-table td { border: 1px solid #e9ecf5; padding: 10px; text-align: center; }
-        .gpa-table input { width: 80px; padding: 5px; border: 1px solid #ccc; border-radius: 5px; }
-        .scientific-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-        .scientific-grid .calc-btn-calculate { padding: 20px 5px; font-size: 1.1em; }
-        .scientific-grid span { grid-column: span 2; }
-
-        /* --- NEW STYLES FOR ENHANCEMENTS --- */
-
-        /* Loading Spinner */
-        .loading {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #833ab4;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Error Message */
-        .error-message {
-            color: #fd1d1d;
-            font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
-            background: rgba(253, 29, 29, 0.1);
-            border-radius: 5px;
-            border-left: 4px solid #fd1d1d;
-        }
-
-        /* Success Message */
-        .success-message {
-            color: #2ecc71;
-            font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
-            background: rgba(46, 204, 113, 0.1);
-            border-radius: 5px;
-            border-left: 4px solid #2ecc71;
-        }
-
-        /* Preset Buttons */
-        .preset-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .preset-btn {
-            padding: 10px;
-            border: 2px solid #e9ecf5;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.8em;
-            font-weight: 600;
-        }
-
-        .preset-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .preset-btn.elegant {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-color: transparent;
-        }
-
-        .preset-btn.vibrant {
-            background: linear-gradient(135deg, #fcb045, #fd1d1d);
-            color: white;
-            border-color: transparent;
-        }
-
-        .preset-btn.professional {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
-            border-color: transparent;
-        }
-
-        /* History Buttons */
-        .history-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .history-btn {
-            padding: 8px 16px;
-            background: #f8f9fc;
-            border: 2px solid #e9ecf5;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            font-size: 0.85em;
-        }
-
-        .history-btn:hover {
-            background: #e9ecf5;
-        }
-
-        .history-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Keyboard Shortcut Hint */
-        .keyboard-hint {
-            font-size: 0.8em;
-            color: #7f8c8d;
-            margin-top: 5px;
-            font-style: italic;
-        }
-
-        /* Mobile Responsive Improvements */
-        @media (max-width: 480px) {
-            .header {
-                padding: 15px;
-                flex-direction: column;
-                text-align: center;
+            .header h1 {
+                font-size: 2em;
             }
-
-            .header-icon {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                padding: 15px;
-            }
-
-            .btn {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            .calculator-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .preset-grid {
+            .template-selector {
                 grid-template-columns: 1fr;
             }
-
-            .scientific-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 5px;
-            }
-
-            .scientific-grid .calc-btn-calculate {
-                padding: 12px 3px;
-                font-size: 0.9em;
-            }
-
-            .nav-buttons {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .nav-btn {
-                width: 100%;
-                margin-bottom: 5px;
-            }
-        }
-
-        /* Modal for Calculators when in Template View */
-        .calculator-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .calculator-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #fd1d1d;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            background: #d32f2f;
-            transform: rotate(90deg);
-        }
-
-        /* Floating Calculator */
-        .floating-calculator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-            display: none;
-        }
-
-        .floating-calculator.active {
-            display: block;
-        }
-
-        .floating-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 15px;
-            border-radius: 15px 15px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .floating-close {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .floating-close:hover {
-            transform: rotate(90deg);
-        }
-
-        .floating-body {
-            padding: 20px;
-            max-height: 400px;
-            overflow-y: auto;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- UPDATED HEADER -->
-    <div class="header">
-        <div class="header-icon">📱</div>
-        <div class="header-content">
-            <h1>Instagram Template Generator</h1>
-            <p>Design professional and attractive Instagram posts in seconds</p>
+    <div class="container">
+        <!-- ================================================
+             HEADER SECTION - EDIT TEXT EASILY HERE
+             Change the title and subtitle to whatever you want!
+        ==================================================== -->
+        <div class="header">
+            <h1>📱 Instagram Template Generator</h1>
+            <p>Create professional and attractive Instagram posts in seconds</p>
         </div>
-    </div>
-
-    <!-- Navigation Buttons -->
-    <div class="nav-buttons">
-        <button class="nav-btn active" id="templateViewBtn">Template Generator</button>
-        <button class="nav-btn" id="calculatorViewBtn">Calculators &amp; Tools</button>
-    </div>
-
-    <!-- Template Generator View -->
-    <div class="view active" id="templateView">
+        
         <div class="main-content">
+            <!-- LEFT SIDE: ALL CONTROLS (USER INPUTS) -->
             <div class="controls">
+                <!-- TEMPLATE TYPE SELECTION -->
                 <div class="control-group">
                     <label>Template Type</label>
                     <div class="template-selector">
+                        <!-- data-template values are used in JavaScript to choose the design -->
                         <div class="template-btn active" data-template="quote">Quote</div>
                         <div class="template-btn" data-template="announcement">Announcement</div>
-                        <div class="template-btn" data-template="tips">Tips</div>
+                        <div class="template-btn" data-template="tips">Tip</div>
                         <div class="template-btn" data-template="story">Story</div>
                         <div class="template-btn" data-template="sale">Sale</div>
                         <div class="template-btn" data-template="minimal">Minimal</div>
                     </div>
                 </div>
-
-                <div class="control-group">
-                    <label>Quick Presets</label>
-                    <div class="preset-grid">
-                        <button class="preset-btn elegant" data-preset="elegant">Elegant</button>
-                        <button class="preset-btn vibrant" data-preset="vibrant">Vibrant</button>
-                        <button class="preset-btn professional" data-preset="professional">Professional</button>
-                    </div>
-                </div>
-
+                
+                <!-- MAIN TEXT INPUT - EDIT DEFAULT TEXT HERE -->
                 <div class="control-group">
                     <label>Main Text</label>
-                    <input id="mainText" maxlength="50" type="text" value="Success starts with a step" />
-                    <div class="keyboard-hint">Max 50 characters</div>
+                    <input type="text" id="mainText" value="Success begins with a step" maxlength="50">
                 </div>
-
+                
+                <!-- SUB TEXT INPUT - EDIT DEFAULT TEXT HERE -->
                 <div class="control-group">
                     <label>Sub Text</label>
                     <textarea id="subText" maxlength="100">Make every day a new opportunity for creativity</textarea>
-                    <div class="keyboard-hint">Max 100 characters</div>
                 </div>
 
+                <!-- FONT SIZE CONTROLS -->
                 <div class="control-group">
+                    <label>Font Sizes</label>
+                    
+                    <label style="font-size: 0.85em; margin-top: 15px;">Main Font Size</label>
+                    <div class="range-container">
+                        <input type="range" id="mainFontSize" min="30" max="120" value="70">
+                        <span class="range-value" id="mainFontSizeValue">70</span>
+                    </div>
+                    
+                    <label style="font-size: 0.85em; margin-top: 15px;">Sub Font Size</label>
+                    <div class="range-container">
+                        <input type="range" id="subFontSize" min="20" max="60" value="38">
+                        <span class="range-value" id="subFontSizeValue">38</span>
+                    </div>
+                </div>
+                
+                <!-- COLOR CONTROLS - CHANGE DEFAULT COLORS HERE -->
+                <div class="control-group">
+                    <label>Colors</label>
                     <div class="color-grid">
                         <div class="color-item">
                             <label>Background Color</label>
-                            <input id="bgColor" type="color" value="#833ab4" />
+                            <input type="color" id="bgColor" value="#833ab4">
                         </div>
                         <div class="color-item">
                             <label>Text Color</label>
-                            <input id="textColor" type="color" value="#ffffff" />
+                            <input type="color" id="textColor" value="#ffffff">
                         </div>
                     </div>
                 </div>
-
+                
+                <!-- FONT STYLE DROPDOWN -->
                 <div class="control-group">
                     <label>Font Style</label>
                     <select id="fontStyle">
@@ -590,2468 +471,559 @@
                         <option value="light">Light</option>
                     </select>
                 </div>
-
-                <div class="control-group">
-                    <label>Main Font Size</label>
-                    <select id="fontSize">
-                        <option value="small">Small</option>
-                        <option selected="" value="medium">Medium</option>
-                        <option value="large">Large</option>
-                    </select>
-                </div>
-
-                <div class="history-buttons">
-                    <button class="history-btn" disabled="" id="undoBtn">↶ Undo</button>
-                    <button class="history-btn" disabled="" id="redoBtn">↷ Redo</button>
-                </div>
             </div>
-
+            
+            <!-- RIGHT SIDE: CANVAS PREVIEW -->
             <div class="preview">
-                <canvas height="1080" id="canvas" width="1080"></canvas>
+                <canvas id="canvas" width="1080" height="1080"></canvas>
             </div>
         </div>
-
+        
+        <!-- BOTTOM ACTION BUTTONS -->
         <div class="action-buttons">
             <button class="btn btn-primary" id="downloadBtn">Download Template</button>
+            <button class="btn btn-secondary" id="shareBtn">Share</button>
             <button class="btn btn-accent" id="randomBtn">Random Design</button>
         </div>
     </div>
 
-    <!-- Calculator View -->
-    <div class="view" id="calculatorView">
-        <div class="calculator-container" id="calculatorUI">
-            <h2>Select a Tool from the Footer</h2>
-            <p>Choose a calculator or utility from the grid below to get started.</p>
-        </div>
-    </div>
+    <!-- NOTIFICATION TOAST -->
+    <div class="notification" id="notification"></div>
 
-    <!-- Calculator Modal for Template View -->
-    <div class="calculator-modal" id="calculatorModal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalCloseBtn">×</button>
-            <div id="modalCalculatorContent"></div>
-        </div>
-    </div>
-
-    <!-- Floating Calculator -->
-    <div class="floating-calculator" id="floatingCalc">
-        <div class="floating-header">
-            <h3 id="floatingCalcTitle">Calculator</h3>
-            <button class="floating-close" id="floatingCloseBtn">×</button>
-        </div>
-        <div class="floating-body" id="floatingCalcContent"></div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <div class="footer-content">
-            <div class="calculator-grid" id="footerCalculatorGrid">
-                <button class="calc-btn" data-calc="basic">Basic Calculator</button>
-                <button class="calc-btn" data-calc="scientific">Scientific Calculator</button>
-                <button class="calc-btn" data-calc="percentage">Percentage Calculator</button>
-                <button class="calc-btn" data-calc="hexadecimal">Hexadecimal Calculator</button>
-                <button class="calc-btn" data-calc="discount">Discount Calculator</button>
-                <button class="calc-btn" data-calc="tip">Tip Calculator</button>
-                <button class="calc-btn" data-calc="salesTax">Sales Tax Calculator</button>
-                <button class="calc-btn" data-calc="loan">Loan Calculator</button>
-                <button class="calc-btn" data-calc="mortgage">Mortgage Calculator</button>
-                <button class="calc-btn" data-calc="savings">Savings Calculator</button>
-                <button class="calc-btn" data-calc="unitPrice">Unit Price Calculator</button>
-                <button class="calc-btn" data-calc="unitConverter">Unit Converter</button>
-                <button class="calc-btn" data-calc="date">Date Calculator</button>
-                <button class="calc-btn" data-calc="fuelCost">Fuel Cost Calculator</button>
-                <button class="calc-btn" data-calc="fuelEfficiency">Fuel Efficiency Calculator</button>
-                <button class="calc-btn" data-calc="gpa">GPA Calculator</button>
-                <button class="calc-btn" data-calc="bmi">BMI Calculator</button>
-                <button class="calc-btn" data-calc="bodyFat">Body Fat Calculator</button>
-                <button class="calc-btn" data-calc="water">Water Calculator</button>
-                <button class="calc-btn" data-calc="password">Password Generator</button>
-                <button class="calc-btn" data-calc="randomNumber">Random Number</button>
-                <!-- NEW CALCULATOR BUTTONS -->
-                <button class="calc-btn" data-calc="bottleneck">Bottleneck Calculator</button>
-                <button class="calc-btn" data-calc="recipe">Recipe Calculator</button>
-                <button class="calc-btn" data-calc="zodiac">Zodiac Calculator</button>
-                <!-- NEWLY ADDED CALCULATORS -->
-                <button class="calc-btn" data-calc="age">Age Calculator</button>
-                <button class="calc-btn" data-calc="dose">Dose Calculator</button>
-            </div>
-            <div class="contact-info">
-                <strong>Contact Us</strong>
-                <p>Email: admin@bestis1.com</p>
-                <p>We are here to help with any questions or issues.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // --- Template History Class ---
-    class TemplateHistory {
-        constructor(generator) {
-            this.generator = generator;
-            this.history = [];
-            this.currentIndex = -1;
-            this.maxHistory = 10;
-        }
-
-        saveState() {
-            const state = this.generator.getSettings();
-            this.history = this.history.slice(0, this.currentIndex + 1);
-            this.history.push(JSON.parse(JSON.stringify(state)));
-            if (this.history.length > this.maxHistory) {
-                this.history.shift();
+    <!-- ================================================
+         JAVASCRIPT CODE - FULLY COMMENTED FOR EASY MODIFICATION
+         ====================================================
+         HOW TO MODIFY:
+         1. To change template designs: find functions like drawQuoteTemplate()
+         2. To change colors/texts: look at getSettings() or randomize()
+         3. To add a new template: add button in HTML, then create new draw function
+    ==================================================== -->
+    <script>
+        // ========== MAIN CLASS ==========
+        // This class handles everything: drawing, events, download, etc.
+        class InstagramTemplateGenerator {
+            constructor() {
+                // Get canvas element and its drawing context
+                this.canvas = document.getElementById('canvas');
+                this.ctx = this.canvas.getContext('2d');
+                
+                // Current selected template (default is 'quote')
+                this.currentTemplate = 'quote';
+                
+                // Get notification element for showing messages
+                this.notification = document.getElementById('notification');
+                
+                // Setup all event listeners (buttons, inputs, sliders)
+                this.setupEventListeners();
+                
+                // Generate the initial template
+                this.generateTemplate();
             }
-            this.currentIndex = this.history.length - 1;
-            this.updateButtons();
-        }
 
-        undo() {
-            if (this.currentIndex > 0) {
-                this.currentIndex--;
-                this.applyState(this.history[this.currentIndex]);
-            }
-        }
-
-        redo() {
-            if (this.currentIndex < this.history.length - 1) {
-                this.currentIndex++;
-                this.applyState(this.history[this.currentIndex]);
-            }
-        }
-
-        applyState(state) {
-            Object.keys(state).forEach(key => {
-                const element = document.getElementById(key);
-                if (element) {
-                    if (element.type === 'color') {
-                        element.value = state[key];
-                    } else {
-                        element.value = state[key];
-                    }
-                }
-            });
-            this.generator.generateTemplate();
-            this.updateButtons();
-        }
-
-        updateButtons() {
-            const undoBtn = document.getElementById('undoBtn');
-            const redoBtn = document.getElementById('redoBtn');
-
-            if (undoBtn) {
-                undoBtn.disabled = this.currentIndex <= 0;
-            }
-            if (redoBtn) {
-                redoBtn.disabled = this.currentIndex >= this.history.length - 1;
-            }
-        }
-
-        clear() {
-            this.history = [];
-            this.currentIndex = -1;
-            this.updateButtons();
-        }
-    }
-
-    // --- Enhanced InstagramTemplateGenerator ---
-    class InstagramTemplateGenerator {
-        constructor() {
-            this.canvas = document.getElementById('canvas');
-            this.ctx = this.canvas.getContext('2d');
-            this.currentTemplate = 'quote';
-            this.debounceTimer = null;
-            this.history = new TemplateHistory(this);
-            this.presets = {
-                elegant: {
-                    bgColor: '#667eea',
-                    textColor: '#ffffff',
-                    fontStyle: 'light',
-                    fontSize: 'medium'
-                },
-                vibrant: {
-                    bgColor: '#fcb045',
-                    textColor: '#000000',
-                    fontStyle: 'bold',
-                    fontSize: 'large'
-                },
-                professional: {
-                    bgColor: '#2c3e50',
-                    textColor: '#ffffff',
-                    fontStyle: 'normal',
-                    fontSize: 'medium'
-                }
-            };
-            this.setupEventListeners();
-            this.generateTemplate();
-            this.history.saveState(); // Save initial state
-        }
-
-        setupEventListeners() {
-            // Template buttons
-            document.querySelectorAll('.template-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelector('.template-btn.active').classList.remove('active');
-                    e.target.classList.add('active');
-                    this.currentTemplate = e.target.dataset.template;
-                    this.generateTemplate();
-                    this.history.saveState();
-                });
-            });
-
-            // Input fields with debouncing
-            ['mainText', 'subText', 'bgColor', 'textColor', 'fontStyle', 'fontSize'].forEach(id => {
-                const element = document.getElementById(id);
-                element.addEventListener('input', () => {
-                    if (this.debounceTimer) clearTimeout(this.debounceTimer);
-                    this.debounceTimer = setTimeout(() => {
+            // ========== SETUP ALL EVENT LISTENERS ==========
+            setupEventListeners() {
+                // TEMPLATE BUTTONS - when user clicks on a template
+                document.querySelectorAll('.template-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        // Remove active class from all buttons
+                        document.querySelector('.template-btn.active').classList.remove('active');
+                        // Add active class to clicked button
+                        e.target.classList.add('active');
+                        // Update current template
+                        this.currentTemplate = e.target.dataset.template;
+                        // Redraw the canvas with new template
                         this.generateTemplate();
-                        this.history.saveState();
-                    }, 150);
-                });
-            });
-
-            // Preset buttons
-            document.querySelectorAll('.preset-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const preset = this.presets[e.target.dataset.preset];
-                    Object.keys(preset).forEach(key => {
-                        const element = document.getElementById(key);
-                        if (element) element.value = preset[key];
+                        // Show notification
+                        this.showNotification('Template changed');
                     });
-                    this.generateTemplate();
-                    this.history.saveState();
                 });
-            });
 
-            // Action buttons
-            document.getElementById('downloadBtn').addEventListener('click', () => this.downloadImage());
-            document.getElementById('randomBtn').addEventListener('click', () => this.randomize());
+                // FONT SIZE CONTROLS - main and sub font size sliders
+                ['mainFontSize', 'subFontSize'].forEach(id => {
+                    const input = document.getElementById(id);
+                    const value = document.getElementById(id + 'Value');
+                    input.addEventListener('input', () => {
+                        // Update displayed value
+                        value.textContent = input.value;
+                        // Redraw canvas
+                        this.generateTemplate();
+                    });
+                });
 
-            // History buttons
-            document.getElementById('undoBtn').addEventListener('click', () => this.history.undo());
-            document.getElementById('redoBtn').addEventListener('click', () => this.history.redo());
-        }
+                // ALL OTHER INPUTS - text fields, colors, font style
+                ['mainText', 'subText', 'bgColor', 'textColor', 'fontStyle'].forEach(id => {
+                    document.getElementById(id).addEventListener('input', () => {
+                        this.generateTemplate();
+                    });
+                });
 
-        getSettings() {
-            return {
-                mainText: document.getElementById('mainText').value,
-                subText: document.getElementById('subText').value,
-                bgColor: document.getElementById('bgColor').value,
-                textColor: document.getElementById('textColor').value,
-                fontStyle: document.getElementById('fontStyle').value,
-                fontSize: document.getElementById('fontSize').value
-            };
-        }
+                // DOWNLOAD BUTTON
+                document.getElementById('downloadBtn').addEventListener('click', () => {
+                    this.downloadImage();
+                });
 
-        generateTemplate() {
-            const s = this.getSettings();
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            switch(this.currentTemplate) {
-                case 'quote': this.drawQuote(s); break;
-                case 'announcement': this.drawAnnouncement(s); break;
-                case 'tips': this.drawTips(s); break;
-                case 'story': this.drawStory(s); break;
-                case 'sale': this.drawSale(s); break;
-                case 'minimal': this.drawMinimal(s); break;
+                // SHARE BUTTON
+                document.getElementById('shareBtn').addEventListener('click', () => {
+                    this.shareImage();
+                });
+
+                // RANDOM DESIGN BUTTON
+                document.getElementById('randomBtn').addEventListener('click', () => {
+                    this.randomize();
+                });
             }
-        }
 
-        drawQuote(s) {
-            const g = this.ctx.createLinearGradient(0,0, this.canvas.width, this.canvas.height);
-            g.addColorStop(0, s.bgColor);
-            g.addColorStop(1, this.adjustColor(s.bgColor, -30));
-            this.ctx.fillStyle = g;
-            this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-            this.ctx.globalAlpha = 0.1;
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.beginPath();
-            this.ctx.arc(200,200,300,0,Math.PI*2);
-            this.ctx.fill();
-            this.ctx.beginPath();
-            this.ctx.arc(880,880,400,0,Math.PI*2);
-            this.ctx.fill();
-            this.ctx.globalAlpha = 1;
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.globalAlpha = 0.3;
-            this.ctx.font='bold 200px Arial';
-            this.ctx.textAlign='left';
-            this.ctx.fillText('"',130,350);
-            this.ctx.globalAlpha = 1;
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.font = this.getFont(s,'main');
-            this.ctx.textAlign='center';
-            this.wrapText(s.mainText, this.canvas.width/2, 450, 900, 80);
-            this.ctx.font = this.getFont(s,'sub');
-            this.ctx.globalAlpha = 0.8;
-            this.wrapText(s.subText, this.canvas.width/2, 650, 800, 50);
-            this.ctx.globalAlpha = 1;
-            this.ctx.strokeStyle = s.textColor;
-            this.ctx.lineWidth = 3;
-            this.ctx.globalAlpha = 0.5;
-            this.ctx.beginPath();
-            this.ctx.moveTo(340,750);
-            this.ctx.lineTo(740,750);
-            this.ctx.stroke();
-            this.ctx.globalAlpha = 1;
-        }
-
-        drawAnnouncement(s) {
-            this.ctx.fillStyle = s.bgColor;
-            this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-            this.ctx.globalAlpha = 0.15;
-            this.ctx.fillStyle = s.textColor;
-            for(let i=0; i<10; i++) {
-                const x = Math.random()*this.canvas.width;
-                const y = Math.random()*this.canvas.height;
-                const size = Math.random()*150+50;
-                this.ctx.fillRect(x,y,size,size);
+            // ========== SHOW NOTIFICATION ==========
+            showNotification(message) {
+                this.notification.textContent = message;
+                this.notification.classList.add('show');
+                setTimeout(() => {
+                    this.notification.classList.remove('show');
+                }, 2000);
             }
-            this.ctx.globalAlpha = 1;
-            this.ctx.strokeStyle = s.textColor;
-            this.ctx.lineWidth = 8;
-            this.ctx.strokeRect(80,80, this.canvas.width-160, this.canvas.height-160);
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.font='bold 40px Arial';
-            this.ctx.textAlign='center';
-            this.ctx.fillText('🔔 Important Announcement', this.canvas.width/2, 250);
-            this.ctx.font = this.getFont(s,'main');
-            this.wrapText(s.mainText, this.canvas.width/2, 450, 850, 80);
-            this.ctx.font = this.getFont(s,'sub');
-            this.ctx.globalAlpha = 0.9;
-            this.wrapText(s.subText, this.canvas.width/2, 650, 800, 50);
-            this.ctx.globalAlpha = 1;
-        }
 
-        drawTips(s) {
-            const g = this.ctx.createRadialGradient(this.canvas.width/2, this.canvas.height/2, 0, this.canvas.width/2, this.canvas.height/2, this.canvas.width/2);
-            g.addColorStop(0, s.bgColor);
-            g.addColorStop(1, this.adjustColor(s.bgColor, -40));
-            this.ctx.fillStyle = g;
-            this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.globalAlpha = 0.2;
-            this.ctx.font='bold 250px Arial';
-            this.ctx.textAlign='center';
-            this.ctx.fillText('💡', this.canvas.width/2, 350);
-            this.ctx.globalAlpha = 1;
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.font='bold 50px Arial';
-            this.ctx.fillText('✨ Tip of the Day', this.canvas.width/2, 200);
-            this.ctx.font = this.getFont(s,'main');
-            this.wrapText(s.mainText, this.canvas.width/2, 500, 900, 75);
-            this.ctx.font = this.getFont(s,'sub');
-            this.ctx.globalAlpha = 0.85;
-            this.wrapText(s.subText, this.canvas.width/2, 700, 850, 45);
-            this.ctx.globalAlpha = 1;
-        }
+            // ========== GET ALL CURRENT SETTINGS ==========
+            // This returns an object with all user choices (text, colors, sizes)
+            getSettings() {
+                return {
+                    mainText: document.getElementById('mainText').value,
+                    subText: document.getElementById('subText').value,
+                    bgColor: document.getElementById('bgColor').value,
+                    textColor: document.getElementById('textColor').value,
+                    fontStyle: document.getElementById('fontStyle').value,
+                    mainFontSize: parseInt(document.getElementById('mainFontSize').value),
+                    subFontSize: parseInt(document.getElementById('subFontSize').value)
+                };
+            }
 
-        drawStory(s) {
-            const g = this.ctx.createLinearGradient(0,0, this.canvas.width, this.canvas.height);
-            g.addColorStop(0, s.bgColor);
-            g.addColorStop(0.5, this.adjustColor(s.bgColor, -20));
-            g.addColorStop(1, this.adjustColor(s.bgColor, -40));
-            this.ctx.fillStyle = g;
-            this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.globalAlpha = 0.15;
-            for(let i=0; i<50; i++) {
-                const x = Math.random()*this.canvas.width;
-                const y = Math.random()*this.canvas.height;
-                const size = Math.random()*20+5;
+            // ========== MAIN GENERATION FUNCTION ==========
+            // This clears canvas and calls the appropriate template drawer
+            generateTemplate() {
+                const settings = this.getSettings();
+                
+                // Small animation effect on canvas
+                this.canvas.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.canvas.style.opacity = '1';
+                }, 100);
+                
+                // Clear canvas
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Call the correct drawing function based on current template
+                switch(this.currentTemplate) {
+                    case 'quote':
+                        this.drawQuoteTemplate(settings);
+                        break;
+                    case 'announcement':
+                        this.drawAnnouncementTemplate(settings);
+                        break;
+                    case 'tips':
+                        this.drawTipsTemplate(settings);
+                        break;
+                    case 'story':
+                        this.drawStoryTemplate(settings);
+                        break;
+                    case 'sale':
+                        this.drawSaleTemplate(settings);
+                        break;
+                    case 'minimal':
+                        this.drawMinimalTemplate(settings);
+                        break;
+                    default:
+                        this.drawQuoteTemplate(settings);
+                }
+            }
+
+            // ========== TEMPLATE DRAWING FUNCTIONS ==========
+            // Each function draws a different layout. YOU CAN MODIFY ANY OF THESE!
+            
+            // 1. QUOTE TEMPLATE - with quotation marks and decorative circles
+            drawQuoteTemplate(settings) {
+                // Gradient background
+                const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+                gradient.addColorStop(0, settings.bgColor);
+                gradient.addColorStop(1, this.adjustColor(settings.bgColor, -30));
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Decorative circles
+                this.ctx.globalAlpha = 0.1;
+                this.ctx.fillStyle = settings.textColor;
                 this.ctx.beginPath();
-                this.ctx.arc(x,y,size,0,Math.PI*2);
+                this.ctx.arc(200, 200, 300, 0, Math.PI * 2);
                 this.ctx.fill();
-            }
-            this.ctx.globalAlpha = 1;
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.font = this.getFont(s,'main');
-            this.ctx.textAlign='center';
-            this.wrapText(s.mainText, this.canvas.width/2, 400, 900, 80);
-            this.ctx.font = this.getFont(s,'sub');
-            this.ctx.globalAlpha = 0.9;
-            this.wrapText(s.subText, this.canvas.width/2, 600, 850, 50);
-            this.ctx.globalAlpha = 1;
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.globalAlpha = 0.2;
-            this.ctx.fillRect(0, 900, this.canvas.width, 180);
-            this.ctx.globalAlpha = 1;
-        }
+                this.ctx.beginPath();
+                this.ctx.arc(880, 880, 400, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.globalAlpha = 1;
 
-        drawSale(s) {
-            this.ctx.fillStyle = s.bgColor;
-            this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.globalAlpha = 0.1;
-            for(let i=-500; i<this.canvas.width+500; i+=100) {
+                // Quote mark
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.globalAlpha = 0.3;
+                this.ctx.font = `bold ${settings.mainFontSize * 2.8}px Arial`;
+                this.ctx.textAlign = 'left';
+                this.ctx.fillText('"', 130, 350);
+                this.ctx.globalAlpha = 1;
+
+                // Main text
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.font = this.getFont(settings, 'main');
+                this.ctx.textAlign = 'center';
+                this.wrapText(settings.mainText, this.canvas.width / 2, 450, 900, settings.mainFontSize * 1.1);
+
+                // Sub text
+                this.ctx.font = this.getFont(settings, 'sub');
+                this.ctx.globalAlpha = 0.8;
+                this.wrapText(settings.subText, this.canvas.width / 2, 650, 800, settings.subFontSize * 1.2);
+                this.ctx.globalAlpha = 1;
+
+                // Decorative line
+                this.ctx.strokeStyle = settings.textColor;
+                this.ctx.lineWidth = 3;
+                this.ctx.globalAlpha = 0.5;
+                this.ctx.beginPath();
+                this.ctx.moveTo(340, 750);
+                this.ctx.lineTo(740, 750);
+                this.ctx.stroke();
+                this.ctx.globalAlpha = 1;
+            }
+
+            // 2. ANNOUNCEMENT TEMPLATE - with geometric pattern and frame
+            drawAnnouncementTemplate(settings) {
+                this.ctx.fillStyle = settings.bgColor;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Geometric shapes pattern
+                this.ctx.globalAlpha = 0.15;
+                this.ctx.fillStyle = settings.textColor;
+                for(let i = 0; i < 10; i++) {
+                    const x = Math.random() * this.canvas.width;
+                    const y = Math.random() * this.canvas.height;
+                    const size = Math.random() * 150 + 50;
+                    this.ctx.fillRect(x, y, size, size);
+                }
+                this.ctx.globalAlpha = 1;
+
+                // Outer frame
+                this.ctx.strokeStyle = settings.textColor;
+                this.ctx.lineWidth = 8;
+                this.ctx.strokeRect(80, 80, this.canvas.width - 160, this.canvas.height - 160);
+
+                // Announcement label
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.font = `bold ${settings.subFontSize}px Arial`;
+                this.ctx.textAlign = 'center';
+                this.ctx.fillText('🔔 Important Announcement', this.canvas.width / 2, 250);
+
+                // Main text
+                this.ctx.font = this.getFont(settings, 'main');
+                this.wrapText(settings.mainText, this.canvas.width / 2, 450, 850, settings.mainFontSize * 1.1);
+
+                // Sub text
+                this.ctx.font = this.getFont(settings, 'sub');
+                this.ctx.globalAlpha = 0.9;
+                this.wrapText(settings.subText, this.canvas.width / 2, 650, 800, settings.subFontSize * 1.2);
+                this.ctx.globalAlpha = 1;
+            }
+
+            // 3. TIPS TEMPLATE - with lightbulb icon
+            drawTipsTemplate(settings) {
+                // Radial gradient background
+                const gradient = this.ctx.createRadialGradient(
+                    this.canvas.width/2, this.canvas.height/2, 0,
+                    this.canvas.width/2, this.canvas.height/2, this.canvas.width/2
+                );
+                gradient.addColorStop(0, settings.bgColor);
+                gradient.addColorStop(1, this.adjustColor(settings.bgColor, -40));
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Light bulb icon
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.globalAlpha = 0.2;
+                this.ctx.font = `bold ${settings.mainFontSize * 3.5}px Arial`;
+                this.ctx.textAlign = 'center';
+                this.ctx.fillText('💡', this.canvas.width / 2, 350);
+                this.ctx.globalAlpha = 1;
+
+                // Title
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.font = `bold ${settings.subFontSize * 1.3}px Arial`;
+                this.ctx.fillText('✨ Tip of the Day', this.canvas.width / 2, 200);
+
+                // Main text
+                this.ctx.font = this.getFont(settings, 'main');
+                this.wrapText(settings.mainText, this.canvas.width / 2, 500, 900, settings.mainFontSize * 1.1);
+
+                // Sub text
+                this.ctx.font = this.getFont(settings, 'sub');
+                this.ctx.globalAlpha = 0.85;
+                this.wrapText(settings.subText, this.canvas.width / 2, 700, 850, settings.subFontSize * 1.2);
+                this.ctx.globalAlpha = 1;
+            }
+
+            // 4. STORY TEMPLATE - with decorative dots
+            drawStoryTemplate(settings) {
+                // Diagonal gradient
+                const gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+                gradient.addColorStop(0, settings.bgColor);
+                gradient.addColorStop(0.5, this.adjustColor(settings.bgColor, -20));
+                gradient.addColorStop(1, this.adjustColor(settings.bgColor, -40));
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Decorative dots
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.globalAlpha = 0.15;
+                for(let i = 0; i < 50; i++) {
+                    const x = Math.random() * this.canvas.width;
+                    const y = Math.random() * this.canvas.height;
+                    const size = Math.random() * 20 + 5;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                }
+                this.ctx.globalAlpha = 1;
+
+                // Main text
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.font = this.getFont(settings, 'main');
+                this.ctx.textAlign = 'center';
+                this.wrapText(settings.mainText, this.canvas.width / 2, 400, 900, settings.mainFontSize * 1.1);
+
+                // Sub text
+                this.ctx.font = this.getFont(settings, 'sub');
+                this.ctx.globalAlpha = 0.9;
+                this.wrapText(settings.subText, this.canvas.width / 2, 600, 850, settings.subFontSize * 1.2);
+                this.ctx.globalAlpha = 1;
+
+                // Bottom bar
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.globalAlpha = 0.2;
+                this.ctx.fillRect(0, 900, this.canvas.width, 180);
+                this.ctx.globalAlpha = 1;
+            }
+
+            // 5. SALE TEMPLATE - with discount badge
+            drawSaleTemplate(settings) {
+                this.ctx.fillStyle = settings.bgColor;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Diagonal stripes
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.globalAlpha = 0.1;
+                for(let i = -500; i < this.canvas.width + 500; i += 100) {
+                    this.ctx.save();
+                    this.ctx.translate(i, 0);
+                    this.ctx.rotate(Math.PI / 6);
+                    this.ctx.fillRect(0, -200, 60, this.canvas.height + 400);
+                    this.ctx.restore();
+                }
+                this.ctx.globalAlpha = 1;
+
+                // SALE badge
                 this.ctx.save();
-                this.ctx.translate(i,0);
-                this.ctx.rotate(Math.PI/6);
-                this.ctx.fillRect(0,-200,60, this.canvas.height+400);
+                this.ctx.translate(900, 180);
+                this.ctx.rotate(-Math.PI / 12);
+                this.ctx.fillStyle = '#ffeb3b';
+                this.ctx.beginPath();
+                for(let i = 0; i < 8; i++) {
+                    const angle = (i / 8) * Math.PI * 2;
+                    const radius = i % 2 === 0 ? 80 : 60;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    if(i === 0) this.ctx.moveTo(x, y);
+                    else this.ctx.lineTo(x, y);
+                }
+                this.ctx.closePath();
+                this.ctx.fill();
+                this.ctx.fillStyle = '#d32f2f';
+                this.ctx.font = `bold ${settings.subFontSize}px Arial`;
+                this.ctx.textAlign = 'center';
+                this.ctx.fillText('SALE', 0, 10);
                 this.ctx.restore();
-            }
-            this.ctx.globalAlpha = 1;
-            this.ctx.save();
-            this.ctx.translate(900,180);
-            this.ctx.rotate(-Math.PI/12);
-            this.ctx.fillStyle='#ffeb3b';
-            this.ctx.beginPath();
-            for(let i=0; i<8; i++) {
-                const a = (i/8)*Math.PI*2;
-                const r = i%2===0 ? 80 : 60;
-                const x = Math.cos(a)*r;
-                const y = Math.sin(a)*r;
-                if(i===0) this.ctx.moveTo(x,y);
-                else this.ctx.lineTo(x,y);
-            }
-            this.ctx.closePath();
-            this.ctx.fill();
-            this.ctx.fillStyle='#d32f2f';
-            this.ctx.font='bold 35px Arial';
-            this.ctx.textAlign='center';
-            this.ctx.fillText('SALE',0,10);
-            this.ctx.restore();
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.font = this.getFont(s,'main');
-            this.ctx.textAlign='center';
-            this.wrapText(s.mainText, this.canvas.width/2, 450, 900, 85);
-            this.ctx.font = this.getFont(s,'sub');
-            this.wrapText(s.subText, this.canvas.width/2, 650, 850, 50);
-            this.ctx.font='bold 40px Arial';
-            this.ctx.fillText('⏰ Limited Time Offer', this.canvas.width/2, 850);
-        }
 
-        drawMinimal(s) {
-            this.ctx.fillStyle = s.bgColor;
-            this.ctx.fillRect(0,0, this.canvas.width, this.canvas.height);
-            this.ctx.fillStyle = s.textColor;
-            this.ctx.fillRect(150,250,780,5);
-            this.ctx.font = this.getFont(s,'main');
-            this.ctx.textAlign='center';
-            this.wrapText(s.mainText, this.canvas.width/2, 450, 900, 80);
-            this.ctx.fillRect(150,650,780,5);
-            this.ctx.font = this.getFont(s,'sub');
-            this.ctx.globalAlpha = 0.8;
-            this.wrapText(s.subText, this.canvas.width/2, 750, 850, 45);
-            this.ctx.globalAlpha = 1;
-        }
+                // Main text
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.font = this.getFont(settings, 'main');
+                this.ctx.textAlign = 'center';
+                this.wrapText(settings.mainText, this.canvas.width / 2, 450, 900, settings.mainFontSize * 1.2);
 
-        getFont(s, t) {
-            const w = { bold: '900', normal: '600', light: '400' };
-            const sz = { main: { small: '55px', medium: '70px', large: '85px' }, sub: { small: '30px', medium: '38px', large: '45px' } };
-            const weight = w[s.fontStyle];
-            const size = t === 'main' ? sz.main[s.fontSize] : sz.sub[s.fontSize];
-            return `${weight} ${size} Arial, sans-serif`;
-        }
+                // Sub text
+                this.ctx.font = this.getFont(settings, 'sub');
+                this.wrapText(settings.subText, this.canvas.width / 2, 650, 850, settings.subFontSize * 1.2);
 
-        wrapText(text, x, y, maxW, lineH) {
-            const words = text.split(' ');
-            let line = '';
-            let lines = [];
-            for(let w of words) {
-                const testLine = line + w + ' ';
-                const m = this.ctx.measureText(testLine);
-                if(m.width > maxW && line !== '') {
-                    lines.push(line);
-                    line = w + ' ';
-                } else {
-                    line = testLine;
-                }
-            }
-            lines.push(line);
-            const startY = y - ((lines.length - 1) * lineH) / 2;
-            lines.forEach((l, i) => {
-                this.ctx.fillText(l.trim(), x, startY + (i * lineH));
-            });
-        }
-
-        adjustColor(hex, percent) {
-            const num = parseInt(hex.replace('#',''), 16);
-            const amt = Math.round(2.55 * percent);
-            const R = (num >> 16) + amt;
-            const G = (num >> 8 & 0x00FF) + amt;
-            const B = (num & 0x0000FF) + amt;
-            return '#' + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
-        }
-
-        randomize() {
-            const t = ['quote','announcement','tips','story','sale','minimal'];
-            const rt = t[Math.floor(Math.random()*t.length)];
-            document.querySelector('.template-btn.active').classList.remove('active');
-            document.querySelector(`[data-template="${rt}"]`).classList.add('active');
-            this.currentTemplate = rt;
-            const c = ['#833ab4','#fd1d1d','#fcb045','#667eea','#764ba2','#f093fb','#00c6ff'];
-            document.getElementById('bgColor').value = c[Math.floor(Math.random()*c.length)];
-            const tc = ['#ffffff','#000000','#2c3e50'];
-            document.getElementById('textColor').value = tc[Math.floor(Math.random()*tc.length)];
-            this.generateTemplate();
-            this.history.saveState();
-        }
-
-        downloadImage() {
-            const d = this.canvas.toDataURL('image/png');
-            if (typeof AndroidInterface !== 'undefined') {
-                AndroidInterface.downloadImage(d);
-            } else {
-                const l = document.createElement('a');
-                l.download = `ig-template-${Date.now()}.png`;
-                l.href = d;
-                l.click();
-            }
-        }
-    }
-
-    // --- NEW APP CONTROLLER AND CALCULATOR LOGIC ---
-    class AppController {
-        constructor() {
-            this.templateGen = new InstagramTemplateGenerator();
-            this.calcManager = new CalculatorManager();
-            this.currentCalcType = null;
-            this.setupViewSwitching();
-            this.setupCalculatorButtons();
-            this.setupKeyboardShortcuts();
-            this.setupModal();
-        }
-
-        setupViewSwitching() {
-            document.getElementById('templateViewBtn').addEventListener('click', () => this.switchView('template'));
-            document.getElementById('calculatorViewBtn').addEventListener('click', () => this.switchView('calculator'));
-        }
-
-        switchView(view) {
-            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            if (view === 'template') {
-                document.getElementById('templateView').classList.add('active');
-                document.getElementById('templateViewBtn').classList.add('active');
-                // Hide floating calculator when switching to template view
-                document.getElementById('floatingCalc').classList.remove('active');
-            } else {
-                document.getElementById('calculatorView').classList.add('active');
-                document.getElementById('calculatorViewBtn').classList.add('active');
-            }
-        }
-
-        setupCalculatorButtons() {
-            // Setup calculator buttons in footer
-            document.getElementById('footerCalculatorGrid').addEventListener('click', (e) => {
-                if (e.target.classList.contains('calc-btn')) {
-                    const calcType = e.target.dataset.calc;
-                    this.openCalculator(calcType);
-                }
-            });
-        }
-
-        openCalculator(calcType) {
-            this.currentCalcType = calcType;
-            const currentView = document.querySelector('.view.active').id;
-
-            if (currentView === 'calculatorView') {
-                // In calculator view, load directly
-                this.calcManager.loadCalculator(calcType);
-            } else {
-                // In template view, open in modal
-                this.openCalculatorModal(calcType);
-            }
-        }
-
-        openCalculatorModal(calcType) {
-            const modal = document.getElementById('calculatorModal');
-            const modalContent = document.getElementById('modalCalculatorContent');
-            const calculatorHTML = this.calcManager.getCalculatorHTML(calcType);
-
-            modalContent.innerHTML = calculatorHTML;
-            modal.classList.add('active');
-
-            // Attach calculator logic
-            this.calcManager.attachCalculatorLogic(calcType, 'modal');
-
-            // Also open floating calculator
-            this.openFloatingCalculator(calcType);
-        }
-
-        openFloatingCalculator(calcType) {
-            const floatingCalc = document.getElementById('floatingCalc');
-            const floatingContent = document.getElementById('floatingCalcContent');
-            const floatingTitle = document.getElementById('floatingCalcTitle');
-            const calculatorHTML = this.calcManager.getCalculatorHTML(calcType, true);
-
-            // Set title
-            const calculatorNames = {
-                basic: 'Basic Calculator',
-                scientific: 'Scientific Calculator',
-                percentage: 'Percentage Calculator',
-                hexadecimal: 'Hexadecimal Calculator',
-                discount: 'Discount Calculator',
-                tip: 'Tip Calculator',
-                salesTax: 'Sales Tax Calculator',
-                loan: 'Loan Calculator',
-                mortgage: 'Mortgage Calculator',
-                savings: 'Savings Calculator',
-                unitPrice: 'Unit Price Calculator',
-                unitConverter: 'Unit Converter',
-                date: 'Date Calculator',
-                fuelCost: 'Fuel Cost Calculator',
-                fuelEfficiency: 'Fuel Efficiency Calculator',
-                gpa: 'GPA Calculator',
-                bmi: 'BMI Calculator',
-                bodyFat: 'Body Fat Calculator',
-                water: 'Water Calculator',
-                password: 'Password Generator',
-                randomNumber: 'Random Number Generator',
-                bottleneck: 'Bottleneck Calculator',
-                recipe: 'Recipe Calculator',
-                zodiac: 'Zodiac Calculator',
-                age: 'Age Calculator',
-                dose: 'Dose Calculator'
-            };
-
-            floatingTitle.textContent = calculatorNames[calcType] || 'Calculator';
-            floatingContent.innerHTML = calculatorHTML;
-            floatingCalc.classList.add('active');
-
-            // Attach calculator logic for floating version
-            this.calcManager.attachCalculatorLogic(calcType, 'floating');
-        }
-
-        setupModal() {
-            const modal = document.getElementById('calculatorModal');
-            const closeBtn = document.getElementById('modalCloseBtn');
-
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                // Also close floating calculator when modal is closed
-                document.getElementById('floatingCalc').classList.remove('active');
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    // Also close floating calculator when modal is closed
-                    document.getElementById('floatingCalc').classList.remove('active');
-                }
-            });
-        }
-
-        setupKeyboardShortcuts() {
-            document.addEventListener('keydown', (e) => {
-                // Ctrl+S to save/download
-                if (e.ctrlKey && e.key === 's') {
-                    e.preventDefault();
-                    this.templateGen.downloadImage();
-                }
-
-                // Ctrl+R to randomize
-                if (e.ctrlKey && e.key === 'r') {
-                    e.preventDefault();
-                    this.templateGen.randomize();
-                }
-
-                // Ctrl+Z for undo
-                if (e.ctrlKey && e.key === 'z') {
-                    e.preventDefault();
-                    this.templateGen.history.undo();
-                }
-
-                // Ctrl+Y for redo
-                if (e.ctrlKey && e.key === 'y') {
-                    e.preventDefault();
-                    this.templateGen.history.redo();
-                }
-
-                // Escape to close calculator
-                if (e.key === 'Escape') {
-                    const modal = document.getElementById('calculatorModal');
-                    const floatingCalc = document.getElementById('floatingCalc');
-
-                    if (modal.classList.contains('active')) {
-                        modal.classList.remove('active');
-                        floatingCalc.classList.remove('active');
-                    }
-
-                    if (floatingCalc.classList.contains('active')) {
-                        floatingCalc.classList.remove('active');
-                    }
-                }
-            });
-        }
-    }
-
-    class CalculatorManager {
-        constructor() {
-            this.container = document.getElementById('calculatorUI');
-            this.modalContainer = document.getElementById('modalCalculatorContent');
-            this.floatingContainer = document.getElementById('floatingCalcContent');
-            this.units = {
-                length: { meter: 1, kilometer: 0.001, mile: 0.000621371, yard: 1.09361, foot: 3.28084, inch: 39.3701 },
-                weight: { kilogram: 1, gram: 1000, pound: 2.20462, ounce: 35.274 },
-                volume: { liter: 1, milliliter: 1000, gallon: 0.264172, quart: 1.05669, cup: 4.22675 }
-            };
-        }
-
-        loadCalculator(type) {
-            this.container.innerHTML = this.getCalculatorHTML(type);
-            this.attachCalculatorLogic(type, 'main');
-        }
-
-        getCalculatorHTML(type, isFloating = false) {
-            let html = '';
-            switch(type) {
-                case 'basic': html = this.getBasicCalcHTML(isFloating); break;
-                case 'scientific': html = this.getScientificCalcHTML(isFloating); break;
-                case 'percentage': html = this.getPercentageCalcHTML(isFloating); break;
-                case 'hexadecimal': html = this.getHexadecimalCalcHTML(isFloating); break;
-                case 'discount': html = this.getDiscountCalcHTML(isFloating); break;
-                case 'tip': html = this.getTipCalcHTML(isFloating); break;
-                case 'salesTax': html = this.getSalesTaxCalcHTML(isFloating); break;
-                case 'loan': html = this.getLoanCalcHTML(isFloating); break;
-                case 'mortgage': html = this.getMortgageCalcHTML(isFloating); break;
-                case 'savings': html = this.getSavingsCalcHTML(isFloating); break;
-                case 'unitPrice': html = this.getUnitPriceCalcHTML(isFloating); break;
-                case 'unitConverter': html = this.getUnitConverterHTML(isFloating); break;
-                case 'date': html = this.getDateCalcHTML(isFloating); break;
-                case 'fuelCost': html = this.getFuelCostCalcHTML(isFloating); break;
-                case 'fuelEfficiency': html = this.getFuelEfficiencyCalcHTML(isFloating); break;
-                case 'gpa': html = this.getGpaCalcHTML(isFloating); break;
-                case 'bmi': html = this.getBmiCalcHTML(isFloating); break;
-                case 'bodyFat': html = this.getBodyFatCalcHTML(isFloating); break;
-                case 'water': html = this.getWaterCalcHTML(isFloating); break;
-                case 'password': html = this.getPasswordGenHTML(isFloating); break;
-                case 'randomNumber': html = this.getRandomNumberHTML(isFloating); break;
-                // NEW CALCULATORS
-                case 'bottleneck': html = this.getBottleneckCalcHTML(isFloating); break;
-                case 'recipe': html = this.getRecipeCalcHTML(isFloating); break;
-                case 'zodiac': html = this.getZodiacCalcHTML(isFloating); break;
-                // NEWLY ADDED CALCULATORS
-                case 'age': html = this.getAgeCalcHTML(isFloating); break;
-                case 'dose': html = this.getDoseCalcHTML(isFloating); break;
-            }
-            return html;
-        }
-
-        attachCalculatorLogic(type, containerType = 'main') {
-            let container;
-            if (containerType === 'modal') {
-                container = this.modalContainer;
-            } else if (containerType === 'floating') {
-                container = this.floatingContainer;
-            } else {
-                container = this.container;
+                // Limited time offer text
+                this.ctx.font = `bold ${settings.subFontSize}px Arial`;
+                this.ctx.fillText('⏰ Limited Time Offer', this.canvas.width / 2, 850);
             }
 
-            // Make sure container exists
-            if (!container) return;
+            // 6. MINIMAL TEMPLATE - clean and simple
+            drawMinimalTemplate(settings) {
+                this.ctx.fillStyle = settings.bgColor;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-            switch(type) {
-                case 'basic': this.initBasicCalc(container); break;
-                case 'scientific': this.initScientificCalc(container); break;
-                case 'percentage': this.initPercentageCalc(container); break;
-                case 'hexadecimal': this.initHexadecimalCalc(container); break;
-                case 'discount': this.initDiscountCalc(container); break;
-                case 'tip': this.initTipCalc(container); break;
-                case 'salesTax': this.initSalesTaxCalc(container); break;
-                case 'loan': this.initLoanCalc(container); break;
-                case 'mortgage': this.initMortgageCalc(container); break;
-                case 'savings': this.initSavingsCalc(container); break;
-                case 'unitPrice': this.initUnitPriceCalc(container); break;
-                case 'unitConverter': this.initUnitConverter(container); break;
-                case 'date': this.initDateCalc(container); break;
-                case 'fuelCost': this.initFuelCostCalc(container); break;
-                case 'fuelEfficiency': this.initFuelEfficiencyCalc(container); break;
-                case 'gpa': this.initGpaCalc(container); break;
-                case 'bmi': this.initBmiCalc(container); break;
-                case 'bodyFat': this.initBodyFatCalc(container); break;
-                case 'water': this.initWaterCalc(container); break;
-                case 'password': this.initPasswordGen(container); break;
-                case 'randomNumber': this.initRandomNumber(container); break;
-                // NEW CALCULATORS
-                case 'bottleneck': this.initBottleneckCalc(container); break;
-                case 'recipe': this.initRecipeCalc(container); break;
-                case 'zodiac': this.initZodiacCalc(container); break;
-                // NEWLY ADDED CALCULATORS
-                case 'age': this.initAgeCalc(container); break;
-                case 'dose': this.initDoseCalc(container); break;
-            }
-        }
+                // Top line
+                this.ctx.fillStyle = settings.textColor;
+                this.ctx.fillRect(150, 250, 780, 5);
 
-        // --- HTML Generators for all calculators ---
-        getBasicCalcHTML(isFloating = false) {
-            const displayId = isFloating ? 'basic-display-floating' : 'basic-display';
-            return `<h2>Basic Calculator</h2>
-                    <input type="text" id="${displayId}" readonly>
-                    <div class="scientific-grid">
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('7', '${displayId}')">7</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('8', '${displayId}')">8</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('9', '${displayId}')">9</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('/', '${displayId}')">/</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificClear('${displayId}')">C</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('4', '${displayId}')">4</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('5', '${displayId}')">5</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('6', '${displayId}')">6</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('*', '${displayId}')">*</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('(', '${displayId}')">(</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('1', '${displayId}')">1</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('2', '${displayId}')">2</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('3', '${displayId}')">3</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('-', '${displayId}')">-</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput(')', '${displayId}')">)</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('0', '${displayId}')">0</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('.', '${displayId}')">.</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificCalculate('${displayId}')">=</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('+', '${displayId}')">+</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificDelete('${displayId}')">⌫</button>
-                    </div>`;
-        }
+                // Main text
+                this.ctx.font = this.getFont(settings, 'main');
+                this.ctx.textAlign = 'center';
+                this.wrapText(settings.mainText, this.canvas.width / 2, 450, 900, settings.mainFontSize * 1.1);
 
-        getScientificCalcHTML(isFloating = false) {
-            const displayId = isFloating ? 'scientific-display-floating' : 'scientific-display';
-            return `<h2>Scientific Calculator</h2>
-                    <input type="text" id="${displayId}" readonly>
-                    <div class="scientific-grid">
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.sin(', '${displayId}')">sin</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.cos(', '${displayId}')">cos</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.tan(', '${displayId}')">tan</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.log(', '${displayId}')">log</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.sqrt(', '${displayId}')">√</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('7', '${displayId}')">7</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('8', '${displayId}')">8</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('9', '${displayId}')">9</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('/', '${displayId}')">/</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificClear('${displayId}')">C</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.pow(', '${displayId}')">x^y</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('4', '${displayId}')">4</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('5', '${displayId}')">5</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('6', '${displayId}')">6</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('*', '${displayId}')">*</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('(', '${displayId}')">(</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.PI', '${displayId}')">π</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('1', '${displayId}')">1</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('2', '${displayId}')">2</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('3', '${displayId}')">3</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('-', '${displayId}')">-</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput(')', '${displayId}')">)</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('Math.E', '${displayId}')">e</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('0', '${displayId}')">0</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('.', '${displayId}')">.</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificCalculate('${displayId}')">=</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificInput('+', '${displayId}')">+</button>
-                        <button class="calc-btn-calculate" onclick="calcManager.scientificDelete('${displayId}')">⌫</button>
-                    </div>`;
-        }
+                // Bottom line
+                this.ctx.fillRect(150, 650, 780, 5);
 
-        getPercentageCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Percentage Calculator</h2>
-                    <div class="calc-group">
-                        <label>What is X% of Y?</label>
-                        <input type="number" id="percent-x${prefix}" placeholder="X (e.g., 20)"> % of
-                        <input type="number" id="percent-y${prefix}" placeholder="Y (e.g., 150)">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculatePercentage('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="percent-result${prefix}"></div>`;
-        }
-
-        getHexadecimalCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Hexadecimal Calculator</h2>
-                    <div class="calc-group">
-                        <label>Decimal to Hex</label>
-                        <input type="number" id="dec-input${prefix}" placeholder="Enter Decimal">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.decToHex('${prefix}')">Convert</button>
-                    <div class="calc-result" id="hex-result${prefix}"></div>
-                    <div class="calc-group">
-                        <label>Hex to Decimal</label>
-                        <input type="text" id="hex-input${prefix}" placeholder="Enter Hexadecimal (e.g., FF)">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.hexToDec('${prefix}')">Convert</button>
-                    <div class="calc-result" id="dec-result${prefix}"></div>`;
-        }
-
-        getDiscountCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Discount Calculator</h2>
-                    <div class="calc-group">
-                        <label>Original Price ($)</label>
-                        <input type="number" id="orig-price${prefix}" placeholder="e.g., 100">
-                    </div>
-                    <div class="calc-group">
-                        <label>Discount Percentage (%)</label>
-                        <input type="number" id="disc-percent${prefix}" placeholder="e.g., 25">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateDiscount('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="discount-result${prefix}"></div>`;
-        }
-
-        getTipCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Tip Calculator</h2>
-                    <div class="calc-group">
-                        <label>Bill Amount ($)</label>
-                        <input type="number" id="bill-amount${prefix}" placeholder="e.g., 50">
-                    </div>
-                    <div class="calc-group">
-                        <label>Tip Percentage (%)</label>
-                        <input type="number" id="tip-percent${prefix}" placeholder="e.g., 15">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateTip('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="tip-result${prefix}"></div>`;
-        }
-
-        getSalesTaxCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Sales Tax Calculator</h2>
-                    <div class="calc-group">
-                        <label>Price Before Tax ($)</label>
-                        <input type="number" id="pre-tax-price${prefix}" placeholder="e.g., 100">
-                    </div>
-                    <div class="calc-group">
-                        <label>Sales Tax Rate (%)</label>
-                        <input type="number" id="tax-rate${prefix}" placeholder="e.g., 8.5">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateSalesTax('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="sales-tax-result${prefix}"></div>`;
-        }
-
-        getLoanCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Loan Calculator</h2>
-                    <div class="calc-group">
-                        <label>Loan Amount ($)</label>
-                        <input type="number" id="loan-amount${prefix}" placeholder="e.g., 250000">
-                    </div>
-                    <div class="calc-group">
-                        <label>Annual Interest Rate (%)</label>
-                        <input type="number" id="loan-rate${prefix}" placeholder="e.g., 4.5">
-                    </div>
-                    <div class="calc-group">
-                        <label>Loan Term (years)</label>
-                        <input type="number" id="loan-term${prefix}" placeholder="e.g., 30">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateLoan('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="loan-result${prefix}"></div>`;
-        }
-
-        getMortgageCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Mortgage Calculator</h2>
-                    <div class="calc-group"><label>Home Price ($)</label><input type="number" id="mortgage-price${prefix}" placeholder="e.g., 300000"></div>
-                    <div class="calc-group"><label>Down Payment ($)</label><input type="number" id="mortgage-down${prefix}" placeholder="e.g., 60000"></div>
-                    <div class="calc-group"><label>Loan Term (years)</label><select id="mortgage-term${prefix}"><option value="15">15 years</option><option value="20">20 years</option><option value="30" selected>30 years</option></select></div>
-                    <div class="calc-group"><label>Interest Rate (%)</label><input type="number" id="mortgage-rate${prefix}" step="0.01" placeholder="e.g., 3.5" value="3.5"></div>
-                    <div class="calc-group"><label>Property Tax (annual $)</label><input type="number" id="mortgage-tax${prefix}" placeholder="e.g., 3600" value="3600"></div>
-                    <div class="calc-group"><label>Home Insurance (annual $)</label><input type="number" id="mortgage-insurance${prefix}" placeholder="e.g., 1200" value="1200"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateMortgage('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="mortgage-result${prefix}"></div>`;
-        }
-
-        getSavingsCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Savings Calculator</h2>
-                    <div class="calc-group"><label>Initial Deposit ($)</label><input type="number" id="savings-principal${prefix}" placeholder="e.g., 1000"></div>
-                    <div class="calc-group"><label>Monthly Contribution ($)</label><input type="number" id="savings-contribution${prefix}" placeholder="e.g., 200"></div>
-                    <div class="calc-group"><label>Annual Interest Rate (%)</label><input type="number" id="savings-rate${prefix}" placeholder="e.g., 5"></div>
-                    <div class="calc-group"><label>Number of Years</label><input type="number" id="savings-years${prefix}" placeholder="e.g., 10"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateSavings('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="savings-result${prefix}"></div>`;
-        }
-
-        getUnitPriceCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Unit Price Calculator</h2>
-                    <div class="calc-group"><label>Total Price ($)</label><input type="number" id="total-price${prefix}" placeholder="e.g., 5.99"></div>
-                    <div class="calc-group"><label>Total Quantity/Weight</label><input type="number" id="total-quantity${prefix}" placeholder="e.g., 16 (oz)"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateUnitPrice('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="unit-price-result${prefix}"></div>`;
-        }
-
-        getUnitConverterHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Unit Converter</h2>
-                    <div class="calc-group"><label>Category</label><select id="conversion-category${prefix}"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option><option value="volume">Volume</option></select></div>
-                    <div class="calc-group"><label>From</label><select id="convert-from${prefix}"></select></div>
-                    <div class="calc-group"><label>To</label><select id="convert-to${prefix}"></select></div>
-                    <div class="calc-group"><label>Value</label><input type="number" id="convert-value${prefix}" placeholder="Enter value"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateConversion('${prefix}')">Convert</button>
-                    <div class="calc-result" id="conversion-result${prefix}"></div>`;
-        }
-
-        getDateCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Date Calculator</h2>
-                    <div class="calc-group"><label>Start Date</label><input type="date" id="date-start${prefix}"></div>
-                    <div class="calc-group"><label>End Date</label><input type="date" id="date-end${prefix}"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateDateDiff('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="date-result${prefix}"></div>`;
-        }
-
-        getFuelCostCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Fuel Cost Calculator</h2>
-                    <div class="calc-group"><label>Distance (miles or km)</label><input type="number" id="fuel-distance${prefix}" placeholder="e.g., 300"></div>
-                    <div class="calc-group"><label>Fuel Efficiency (MPG or L/100km)</label><input type="number" id="fuel-efficiency${prefix}" placeholder="e.g., 25"></div>
-                    <div class="calc-group"><label>Price per Unit ($/gallon or $/liter)</label><input type="number" id="fuel-price${prefix}" placeholder="e.g., 3.50"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateFuelCost('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="fuel-cost-result${prefix}"></div>`;
-        }
-
-        getFuelEfficiencyCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Fuel Efficiency Calculator</h2>
-                    <div class="calc-group"><label>Distance Traveled (miles or km)</label><input type="number" id="eff-distance${prefix}" placeholder="e.g., 350"></div>
-                    <div class="calc-group"><label>Fuel Used (gallons or liters)</label><input type="number" id="eff-fuel-used${prefix}" placeholder="e.g., 10"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateFuelEfficiency('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="efficiency-result${prefix}"></div>`;
-        }
-
-        getGpaCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>GPA Calculator</h2>
-                    <table class="gpa-table">
-                        <tr><th>Course Name</th><th>Grade</th><th>Credits</th></tr>
-                        <tr>
-                            <td><input type="text" class="gpa-course-name${prefix}"></td>
-                            <td><select class="gpa-grade${prefix}">
-                                <option value="4">A</option><option value="3.7">A-</option>
-                                <option value="3.3">B+</option><option value="3">B</option>
-                                <option value="2.7">B-</option><option value="2.3">C+</option>
-                                <option value="2">C</option><option value="1.7">C-</option><option value="1.3">D+</option><option value="1">D</option><option value="0">F</option>
-                            </select></td>
-                            <td><input type="number" class="gpa-credits${prefix}" value="3"></td>
-                        </tr>
-                    </table>
-                    <button class="calc-btn-calculate" onclick="calcManager.addGpaRow('${prefix}')">Add Row</button>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateGpa('${prefix}')">Calculate GPA</button>
-                    <div class="calc-result" id="gpa-result${prefix}"></div>`;
-        }
-
-        getBmiCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>BMI Calculator</h2>
-                    <div class="calc-group">
-                        <label>Height (cm)</label>
-                        <input type="number" id="bmi-height${prefix}" placeholder="e.g., 180">
-                    </div>
-                    <div class="calc-group">
-                        <label>Weight (kg)</label>
-                        <input type="number" id="bmi-weight${prefix}" placeholder="e.g., 75">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateBmi('${prefix}')">Calculate BMI</button>
-                    <div class="calc-result" id="bmi-result${prefix}"></div>`;
-        }
-
-        getBodyFatCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Body Fat Calculator</h2>
-                    <div class="calc-group"><label>Gender</label>
-                        <select id="bodyfat-gender${prefix}">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="calc-group"><label>Age</label><input type="number" id="bodyfat-age${prefix}" placeholder="e.g., 30"></div>
-                    <div class="calc-group"><label>Weight (kg)</label><input type="number" id="bodyfat-weight${prefix}" placeholder="e.g., 70"></div>
-                    <div class="calc-group"><label>Height (cm)</label><input type="number" id="bodyfat-height${prefix}" placeholder="e.g., 175"></div>
-                    <div class="calc-group"><label>Neck (cm)</label><input type="number" id="bodyfat-neck${prefix}" placeholder="Neck circumference"></div>
-                    <div class="calc-group"><label>Waist (cm)</label><input type="number" id="bodyfat-waist${prefix}" placeholder="Waist circumference"></div>
-                    <div class="calc-group"><label>Hip (cm) - Women only</label><input type="number" id="bodyfat-hip${prefix}" placeholder="Hip circumference"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateBodyFat('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="bodyfat-result${prefix}"></div>`;
-        }
-
-        getWaterCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Water Intake Calculator</h2>
-                    <div class="calc-group"><label>Your Weight (kg)</label><input type="number" id="water-weight${prefix}" placeholder="e.g., 70"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateWater('${prefix}')">Calculate</button>
-                    <div class="calc-result" id="water-result${prefix}">Based on ~30-35ml per kg of body weight.</div>`;
-        }
-
-        getPasswordGenHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Password Generator</h2>
-                    <div class="calc-group"><label>Password Length</label><input type="number" id="pass-length${prefix}" value="16" min="8" max="32"></div>
-                    <div class="calc-group"><label><input type="checkbox" id="pass-uppercase${prefix}" checked> Include Uppercase (A-Z)</label></div>
-                    <div class="calc-group"><label><input type="checkbox" id="pass-lowercase${prefix}" checked> Include Lowercase (a-z)</label></div>
-                    <div class="calc-group"><label><input type="checkbox" id="pass-numbers${prefix}" checked> Include Numbers (0-9)</label></div>
-                    <div class="calc-group"><label><input type="checkbox" id="pass-symbols${prefix}" checked> Include Symbols (!@#$...)</label></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.generatePassword('${prefix}')">Generate Password</button>
-                    <div class="calc-result" id="password-result${prefix}" style="font-family: monospace; word-break: break-all;">Click to generate</div>`;
-        }
-
-        getRandomNumberHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Random Number Generator</h2>
-                    <div class="calc-group"><label>Minimum Value</label><input type="number" id="min-val${prefix}" value="1"></div>
-                    <div class="calc-group"><label>Maximum Value</label><input type="number" id="max-val${prefix}" value="100"></div>
-                    <button class="calc-btn-calculate" onclick="calcManager.generateRandomNumber('${prefix}')">Generate</button>
-                    <div class="calc-result" id="random-result${prefix}">Click to generate a number</div>`;
-        }
-
-        // --- NEW CALCULATOR HTML GENERATORS ---
-        getBottleneckCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Bottleneck Calculator</h2>
-                    <div class="calc-group">
-                        <label>CPU Model</label>
-                        <input type="text" id="bottleneck-cpu${prefix}" placeholder="e.g., Intel i7-12700K" list="cpu-list${prefix}">
-                        <datalist id="cpu-list${prefix}">
-                            <option value="Intel i9-13900K">
-                            <option value="Intel i7-12700K">
-                            <option value="Intel i5-12600K">
-                            <option value="AMD Ryzen 9 7950X">
-                            <option value="AMD Ryzen 7 7700X">
-                            <option value="AMD Ryzen 5 7600X">
-                        </datalist>
-                    </div>
-                    <div class="calc-group">
-                        <label>GPU Model</label>
-                        <input type="text" id="bottleneck-gpu${prefix}" placeholder="e.g., NVIDIA RTX 4080" list="gpu-list${prefix}">
-                        <datalist id="gpu-list${prefix}">
-                            <option value="NVIDIA RTX 4090">
-                            <option value="NVIDIA RTX 4080">
-                            <option value="NVIDIA RTX 4070 Ti">
-                            <option value="AMD RX 7900 XTX">
-                            <option value="AMD RX 7900 XT">
-                            <option value="AMD RX 7800 XT">
-                        </datalist>
-                    </div>
-                    <div class="calc-group">
-                        <label>Resolution</label>
-                        <select id="bottleneck-resolution${prefix}">
-                            <option value="1080p">1080p (Full HD)</option>
-                            <option value="1440p" selected>1440p (2K QHD)</option>
-                            <option value="2160p">2160p (4K UHD)</option>
-                        </select>
-                    </div>
-                    <div class="calc-group">
-                        <label>RAM Amount (GB)</label>
-                        <input type="number" id="bottleneck-ram${prefix}" value="16" min="8" max="128">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateBottleneck('${prefix}')">Calculate Bottleneck</button>
-                    <div class="calc-result" id="bottleneck-result${prefix}"></div>`;
-        }
-
-        getRecipeCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Recipe Calculator</h2>
-                    <div class="calc-group">
-                        <label>Original Servings</label>
-                        <input type="number" id="recipe-original${prefix}" value="4" min="1">
-                    </div>
-                    <div class="calc-group">
-                        <label>Desired Servings</label>
-                        <input type="number" id="recipe-desired${prefix}" value="6" min="1">
-                    </div>
-                    <div class="calc-group">
-                        <label>Ingredients (one per line)</label>
-                        <textarea id="recipe-ingredients${prefix}" rows="8" placeholder="Enter ingredients with amounts, e.g.:
-2 cups flour
-1 cup sugar
-3 eggs
-250 ml milk">2 cups flour
-1 cup sugar
-3 eggs
-250 ml milk</textarea>
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateRecipe('${prefix}')">Adjust Recipe</button>
-                    <div class="calc-result" id="recipe-result${prefix}"></div>`;
-        }
-
-        getZodiacCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Zodiac Calculator</h2>
-                    <div class="calc-group">
-                        <label>Birth Date</label>
-                        <input type="date" id="zodiac-date${prefix}">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateZodiac('${prefix}')">Get Zodiac Sign</button>
-                    <div class="calc-result" id="zodiac-result${prefix}"></div>
-                    <div id="zodiac-details${prefix}" style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 10px;"></div>`;
-        }
-
-        // --- NEWLY ADDED CALCULATOR HTML GENERATORS ---
-        getAgeCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
-            return `<h2>Age Calculator</h2>
-                    <div class="calc-group">
-                        <label>Birth Date</label>
-                        <input type="date" id="age-birth${prefix}" max="${todayStr}">
-                    </div>
-                    <div class="calc-group">
-                        <label>Calculate Age As Of (Optional)</label>
-                        <input type="date" id="age-asof${prefix}" value="${todayStr}">
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateAge('${prefix}')">Calculate Age</button>
-                    <div class="calc-result" id="age-result${prefix}"></div>
-                    <div id="age-details${prefix}" style="margin-top: 20px; padding: 15px; background: #f0f2f8; border-radius: 10px;"></div>`;
-        }
-
-        getDoseCalcHTML(isFloating = false) {
-            const prefix = isFloating ? '-floating' : '';
-            return `<h2>Dose Calculator</h2>
-                    <div class="calc-group">
-                        <label>Patient Weight</label>
-                        <input type="number" id="dose-weight${prefix}" placeholder="e.g., 70">
-                        <select id="dose-weight-unit${prefix}" style="width: auto; display: inline-block; margin-left: 10px;">
-                            <option value="kg">kg</option>
-                            <option value="lbs">lbs</option>
-                        </select>
-                    </div>
-                    <div class="calc-group">
-                        <label>Medication Concentration</label>
-                        <input type="number" id="dose-concentration${prefix}" placeholder="e.g., 250">
-                        <select id="dose-concentration-unit${prefix}" style="width: auto; display: inline-block; margin-left: 10px;">
-                            <option value="mg/ml">mg/ml</option>
-                            <option value="mg/tablet">mg/tablet</option>
-                            <option value="mcg/ml">mcg/ml</option>
-                            <option value="g/ml">g/ml</option>
-                        </select>
-                    </div>
-                    <div class="calc-group">
-                        <label>Dosage (per kg)</label>
-                        <input type="number" id="dose-perkg${prefix}" placeholder="e.g., 5">
-                        <select id="dose-perkg-unit${prefix}" style="width: auto; display: inline-block; margin-left: 10px;">
-                            <option value="mg">mg/kg</option>
-                            <option value="mcg">mcg/kg</option>
-                            <option value="g">g/kg</option>
-                        </select>
-                    </div>
-                    <div class="calc-group">
-                        <label>Frequency (per day)</label>
-                        <select id="dose-frequency${prefix}">
-                            <option value="1">Once daily</option>
-                            <option value="2">Twice daily (BID)</option>
-                            <option value="3">Three times daily (TID)</option>
-                            <option value="4">Four times daily (QID)</option>
-                            <option value="6">Every 4 hours</option>
-                            <option value="8">Every 3 hours</option>
-                            <option value="12">Every 2 hours</option>
-                        </select>
-                    </div>
-                    <button class="calc-btn-calculate" onclick="calcManager.calculateDose('${prefix}')">Calculate Dose</button>
-                    <div class="calc-result" id="dose-result${prefix}"></div>
-                    <div class="calc-group" style="margin-top: 20px; padding: 15px; background: #f8f9fc; border-radius: 10px;">
-                        <strong>Note:</strong> This calculator is for educational purposes only. Always consult a healthcare professional for medical advice.
-                    </div>`;
-        }
-
-        // --- Logic Implementations for all calculators ---
-        initBasicCalc(container) {
-            // No special initialization needed for basic calculator
-            // The buttons are already wired up with onclick handlers
-        }
-
-        initScientificCalc(container) {
-            // No special initialization needed for scientific calculator
-        }
-
-        scientificInput(val, displayId) {
-            const display = document.getElementById(displayId);
-            if (display) {
-                display.value += val;
-                display.focus();
-            }
-        }
-
-        scientificClear(displayId) {
-            const display = document.getElementById(displayId);
-            if (display) {
-                display.value = '';
-                display.focus();
-            }
-        }
-
-        scientificDelete(displayId) {
-            const display = document.getElementById(displayId);
-            if (display) {
-                display.value = display.value.slice(0, -1);
-                display.focus();
-            }
-        }
-
-        scientificCalculate(displayId) {
-            const display = document.getElementById(displayId);
-            if (!display) return;
-            try {
-                const result = eval(display.value);
-                display.value = result;
-                display.focus();
-            } catch (e) {
-                display.value = 'Error';
-            }
-        }
-
-        initPercentageCalc(container) {
-            // No special init needed
-        }
-
-        calculatePercentage(prefix = '') {
-            const x = parseFloat(document.getElementById('percent-x' + prefix).value);
-            const y = parseFloat(document.getElementById('percent-y' + prefix).value);
-            const res = document.getElementById('percent-result' + prefix);
-            if (isNaN(x) || isNaN(y)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            res.innerHTML = `<div class="success-message">Result: <strong>${(x / 100 * y).toFixed(2)}</strong></div>`;
-        }
-
-        initHexadecimalCalc(container) {
-            // No special init needed
-        }
-
-        decToHex(prefix = '') {
-            const dec = parseInt(document.getElementById('dec-input' + prefix).value, 10);
-            const res = document.getElementById('hex-result' + prefix);
-            if (isNaN(dec)) {
-                res.innerHTML = '<div class="error-message">Invalid decimal number.</div>';
-                return;
-            }
-            res.innerHTML = `<div class="success-message">Hexadecimal: <strong>${dec.toString(16).toUpperCase()}</strong></div>`;
-        }
-
-        hexToDec(prefix = '') {
-            const hex = document.getElementById('hex-input' + prefix).value;
-            const res = document.getElementById('dec-result' + prefix);
-            if (!/^[0-9A-Fa-f]+$/.test(hex)) {
-                res.innerHTML = '<div class="error-message">Invalid hexadecimal number.</div>';
-                return;
-            }
-            res.innerHTML = `<div class="success-message">Decimal: <strong>${parseInt(hex, 16)}</strong></div>`;
-        }
-
-        initDiscountCalc(container) {
-            // No special init needed
-        }
-
-        calculateDiscount(prefix = '') {
-            const price = parseFloat(document.getElementById('orig-price' + prefix).value);
-            const disc = parseFloat(document.getElementById('disc-percent' + prefix).value);
-            const res = document.getElementById('discount-result' + prefix);
-            if (isNaN(price) || isNaN(disc)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const savings = price * (disc / 100);
-            const finalPrice = price - savings;
-            res.innerHTML = `<div class="success-message">
-                You save: <strong>$${savings.toFixed(2)}</strong><br>
-                Final Price: <strong>$${finalPrice.toFixed(2)}</strong>
-            </div>`;
-        }
-
-        initTipCalc(container) {
-            // No special init needed
-        }
-
-        calculateTip(prefix = '') {
-            const bill = parseFloat(document.getElementById('bill-amount' + prefix).value);
-            const tip = parseFloat(document.getElementById('tip-percent' + prefix).value);
-            const res = document.getElementById('tip-result' + prefix);
-            if (isNaN(bill) || isNaN(tip)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const tipAmount = bill * (tip / 100);
-            const total = bill + tipAmount;
-            res.innerHTML = `<div class="success-message">
-                Tip: <strong>$${tipAmount.toFixed(2)}</strong><br>
-                Total: <strong>$${total.toFixed(2)}</strong>
-            </div>`;
-        }
-
-        initSalesTaxCalc(container) {
-            // No special init needed
-        }
-
-        calculateSalesTax(prefix = '') {
-            const price = parseFloat(document.getElementById('pre-tax-price' + prefix).value);
-            const rate = parseFloat(document.getElementById('tax-rate' + prefix).value);
-            const res = document.getElementById('sales-tax-result' + prefix);
-            if (isNaN(price) || isNaN(rate)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const taxAmount = price * (rate / 100);
-            const total = price + taxAmount;
-            res.innerHTML = `<div class="success-message">
-                Sales Tax: <strong>$${taxAmount.toFixed(2)}</strong><br>
-                Total Price: <strong>$${total.toFixed(2)}</strong>
-            </div>`;
-        }
-
-        initLoanCalc(container) {
-            // No special init needed
-        }
-
-        calculateLoan(prefix = '') {
-            const P = parseFloat(document.getElementById('loan-amount' + prefix).value);
-            const r = parseFloat(document.getElementById('loan-rate' + prefix).value) / 100 / 12;
-            const n = parseFloat(document.getElementById('loan-term' + prefix).value) * 12;
-            const res = document.getElementById('loan-result' + prefix);
-            if (isNaN(P) || isNaN(r) || isNaN(n)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const M = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            res.innerHTML = `<div class="success-message">
-                Monthly Payment: <strong>$${M.toFixed(2)}</strong><br>
-                Total Payment: <strong>$${(M * n).toFixed(2)}</strong><br>
-                Total Interest: <strong>$${((M * n) - P).toFixed(2)}</strong>
-            </div>`;
-        }
-
-        initMortgageCalc(container) {
-            // No special init needed
-        }
-
-        calculateMortgage(prefix = '') {
-            const price = parseFloat(document.getElementById('mortgage-price' + prefix).value) || 0;
-            const down = parseFloat(document.getElementById('mortgage-down' + prefix).value) || 0;
-            const term = parseInt(document.getElementById('mortgage-term' + prefix).value);
-            const rate = parseFloat(document.getElementById('mortgage-rate' + prefix).value) / 100 / 12;
-            const tax = parseFloat(document.getElementById('mortgage-tax' + prefix).value) || 0;
-            const insurance = parseFloat(document.getElementById('mortgage-insurance' + prefix).value) || 0;
-            const res = document.getElementById('mortgage-result' + prefix);
-
-            if (isNaN(price) || isNaN(down) || isNaN(term) || isNaN(rate) || price <= 0) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
+                // Sub text
+                this.ctx.font = this.getFont(settings, 'sub');
+                this.ctx.globalAlpha = 0.8;
+                this.wrapText(settings.subText, this.canvas.width / 2, 750, 850, settings.subFontSize * 1.2);
+                this.ctx.globalAlpha = 1;
             }
 
-            const loanAmount = price - down;
-            const months = term * 12;
-
-            // Calculate monthly mortgage payment
-            const monthlyRate = rate;
-            const monthlyMortgage = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-
-            // Add taxes and insurance
-            const monthlyTax = tax / 12;
-            const monthlyInsurance = insurance / 12;
-            const totalMonthly = monthlyMortgage + monthlyTax + monthlyInsurance;
-
-            res.innerHTML = `
-                <div class="success-message">
-                    <strong>Monthly Payment: $${totalMonthly.toFixed(2)}</strong><br>
-                    Breakdown:<br>
-                    - Principal & Interest: $${monthlyMortgage.toFixed(2)}<br>
-                    - Property Tax: $${monthlyTax.toFixed(2)}<br>
-                    - Home Insurance: $${monthlyInsurance.toFixed(2)}<br>
-                    <br>
-                    Loan Details:<br>
-                    - Loan Amount: $${loanAmount.toFixed(2)}<br>
-                    - Total Interest Paid: $${((monthlyMortgage * months) - loanAmount).toFixed(2)}<br>
-                    - Total Payment: $${(totalMonthly * months).toFixed(2)}
-                </div>
-            `;
-        }
-
-        initSavingsCalc(container) {
-            // No special init needed
-        }
-
-        calculateSavings(prefix = '') {
-            const P = parseFloat(document.getElementById('savings-principal' + prefix).value) || 0;
-            const PMT = parseFloat(document.getElementById('savings-contribution' + prefix).value) || 0;
-            const r = parseFloat(document.getElementById('savings-rate' + prefix).value) / 100 / 12;
-            const n = parseFloat(document.getElementById('savings-years' + prefix).value) * 12;
-            const res = document.getElementById('savings-result' + prefix);
-            if (isNaN(P) || isNaN(PMT) || isNaN(r) || isNaN(n)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const FV = P * Math.pow(1 + r, n) + PMT * ((Math.pow(1 + r, n) - 1) / r);
-            const totalContributions = P + (PMT * n);
-            const totalInterest = FV - totalContributions;
-            res.innerHTML = `<div class="success-message">
-                Future Value: <strong>$${FV.toFixed(2)}</strong><br>
-                Total Contributions: <strong>$${totalContributions.toFixed(2)}</strong><br>
-                Total Interest Earned: <strong>$${totalInterest.toFixed(2)}</strong>
-            </div>`;
-        }
-
-        initUnitPriceCalc(container) {
-            // No special init needed
-        }
-
-        calculateUnitPrice(prefix = '') {
-            const price = parseFloat(document.getElementById('total-price' + prefix).value);
-            const quantity = parseFloat(document.getElementById('total-quantity' + prefix).value);
-            const res = document.getElementById('unit-price-result' + prefix);
-            if (isNaN(price) || isNaN(quantity)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            res.innerHTML = `<div class="success-message">Unit Price: <strong>$${(price / quantity).toFixed(2)} per unit</strong></div>`;
-        }
-
-        initUnitConverter(container) {
-            const categoryId = container.querySelector('[id*="conversion-category"]')?.id || 'conversion-category';
-            const fromId = container.querySelector('[id*="convert-from"]')?.id || 'convert-from';
-            const toId = container.querySelector('[id*="convert-to"]')?.id || 'convert-to';
-
-            const category = document.getElementById(categoryId);
-            const from = document.getElementById(fromId);
-            const to = document.getElementById(toId);
-
-            if (!category || !from || !to) return;
-
-            const populateDropdowns = () => {
-                const cat = category.value;
-                from.innerHTML = '';
-                to.innerHTML = '';
-                if (cat === 'temperature') {
-                    from.add(new Option('Celsius', 'celsius'));
-                    from.add(new Option('Fahrenheit', 'fahrenheit'));
-                    from.add(new Option('Kelvin', 'kelvin'));
-                    to.add(new Option('Celsius', 'celsius'));
-                    to.add(new Option('Fahrenheit', 'fahrenheit'));
-                    to.add(new Option('Kelvin', 'kelvin'));
-                } else {
-                    for (const unit in this.units[cat]) {
-                        from.add(new Option(unit, unit));
-                        to.add(new Option(unit, unit));
-                    }
-                }
-            };
-
-            category.addEventListener('change', populateDropdowns);
-            populateDropdowns();
-        }
-
-        calculateConversion(prefix = '') {
-            const cat = document.getElementById('conversion-category' + prefix).value;
-            const from = document.getElementById('convert-from' + prefix).value;
-            const to = document.getElementById('convert-to' + prefix).value;
-            const val = parseFloat(document.getElementById('convert-value' + prefix).value);
-            const res = document.getElementById('conversion-result' + prefix);
-
-            if (isNaN(val)) {
-                res.innerHTML = '<div class="error-message">Please enter a valid number.</div>';
-                return;
+            // ========== HELPER FUNCTIONS ==========
+            
+            // Returns font string based on settings (bold/normal/light and size)
+            getFont(settings, type) {
+                const weights = {
+                    bold: '900',
+                    normal: '600',
+                    light: '400'
+                };
+                const weight = weights[settings.fontStyle];
+                const size = type === 'main' ? settings.mainFontSize : settings.subFontSize;
+                return `${weight} ${size}px Arial, sans-serif`;
             }
 
-            if (from === to) {
-                res.innerHTML = `<div class="success-message">Result: <strong>${val} ${to}</strong></div>`;
-                return;
-            }
+            // Handles multi-line text (wraps long text to next line)
+            wrapText(text, x, y, maxWidth, lineHeight) {
+                const words = text.split(' ');
+                let line = '';
+                let lines = [];
 
-            if (cat === 'temperature') {
-                let result;
-                if (from === 'celsius' && to === 'fahrenheit') result = (val * 9/5) + 32;
-                else if (from === 'fahrenheit' && to === 'celsius') result = (val - 32) * 5/9;
-                else if (from === 'celsius' && to === 'kelvin') result = val + 273.15;
-                else if (from === 'kelvin' && to === 'celsius') result = val - 273.15;
-                else if (from === 'fahrenheit' && to === 'kelvin') result = (val - 32) * 5/9 + 273.15;
-                else if (from === 'kelvin' && to === 'fahrenheit') result = (val - 273.15) * 9/5 + 32;
-                res.innerHTML = `<div class="success-message">Result: <strong>${result.toFixed(2)} ${to}</strong></div>`;
-            } else {
-                if (!this.units[cat] || this.units[cat][from] === undefined || this.units[cat][to] === undefined) {
-                    res.innerHTML = '<div class="error-message">Invalid conversion units selected.</div>';
-                    return;
-                }
-                const inBaseUnit = val / this.units[cat][from];
-                const converted = inBaseUnit * this.units[cat][to];
-                res.innerHTML = `<div class="success-message">Result: <strong>${converted.toFixed(4)} ${to}</strong></div>`;
-            }
-        }
-
-        initDateCalc(container) {
-            // No special init needed
-        }
-
-        calculateDateDiff(prefix = '') {
-            const start = new Date(document.getElementById('date-start' + prefix).value);
-            const end = new Date(document.getElementById('date-end' + prefix).value);
-            const res = document.getElementById('date-result' + prefix);
-            if (isNaN(start) || isNaN(end)) {
-                res.innerHTML = '<div class="error-message">Please select valid dates.</div>';
-                return;
-            }
-            const diffTime = Math.abs(end - start);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            const years = Math.floor(diffDays / 365);
-            const months = Math.floor((diffDays % 365) / 30);
-            const days = diffDays % 30;
-            res.innerHTML = `<div class="success-message">
-                Difference: <strong>${years} years, ${months} months, and ${days} days</strong><br>
-                (${diffDays} total days)
-            </div>`;
-        }
-
-        initFuelCostCalc(container) {
-            // No special init needed
-        }
-
-        calculateFuelCost(prefix = '') {
-            const dist = parseFloat(document.getElementById('fuel-distance' + prefix).value);
-            const eff = parseFloat(document.getElementById('fuel-efficiency' + prefix).value);
-            const price = parseFloat(document.getElementById('fuel-price' + prefix).value);
-            const res = document.getElementById('fuel-cost-result' + prefix);
-            if (isNaN(dist) || isNaN(eff) || isNaN(price)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const fuelNeeded = dist / eff;
-            const totalCost = fuelNeeded * price;
-            res.innerHTML = `<div class="success-message">
-                Fuel Needed: <strong>${fuelNeeded.toFixed(2)} units</strong><br>
-                Total Cost: <strong>$${totalCost.toFixed(2)}</strong>
-            </div>`;
-        }
-
-        initFuelEfficiencyCalc(container) {
-            // No special init needed
-        }
-
-        calculateFuelEfficiency(prefix = '') {
-            const dist = parseFloat(document.getElementById('eff-distance' + prefix).value);
-            const fuel = parseFloat(document.getElementById('eff-fuel-used' + prefix).value);
-            const res = document.getElementById('efficiency-result' + prefix);
-            if (isNaN(dist) || isNaN(fuel)) {
-                res.innerHTML = '<div class="error-message">Please enter valid numbers.</div>';
-                return;
-            }
-            const mpg = dist / fuel;
-            const l100km = (fuel * 100) / dist;
-            res.innerHTML = `<div class="success-message">
-                Efficiency: <strong>${mpg.toFixed(2)} MPG</strong><br>
-                or <strong>${l100km.toFixed(2)} L/100km</strong>
-            </div>`;
-        }
-
-        initGpaCalc(container) {
-            // No special init needed
-        }
-
-        addGpaRow(prefix = '') {
-            const table = container.querySelector('.gpa-table');
-            const row = table.insertRow();
-            row.innerHTML = `<td><input type="text" class="gpa-course-name${prefix}"></td>
-                           <td><select class="gpa-grade${prefix}">
-                                <option value="4">A</option><option value="3.7">A-</option>
-                                <option value="3.3">B+</option><option value="3">B</option>
-                                <option value="2.7">B-</option><option value="2.3">C+</option>
-                                <option value="2">C</option><option value="1.7">C-</option><option value="1.3">D+</option><option value="1">D</option><option value="0">F</option>
-                           </select></td>
-                           <td><input type="number" class="gpa-credits${prefix}" value="3"></td>`;
-        }
-
-        calculateGpa(prefix = '') {
-            const grades = document.querySelectorAll('.gpa-grade' + prefix);
-            const credits = document.querySelectorAll('.gpa-credits' + prefix);
-            let totalPoints = 0, totalCredits = 0;
-            grades.forEach((grade, i) => {
-                const p = parseFloat(grade.value);
-                const c = parseFloat(credits[i].value);
-                if (!isNaN(p) && !isNaN(c)) {
-                    totalPoints += p * c;
-                    totalCredits += c;
-                }
-            });
-            const gpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : '0';
-            document.getElementById('gpa-result' + prefix).innerHTML = `
-                <div class="success-message">
-                    Your GPA is: <strong>${gpa}</strong><br>
-                    Total Credits: <strong>${totalCredits}</strong>
-                </div>
-            `;
-        }
-
-        initBmiCalc(container) {
-            // No special init needed
-        }
-
-        calculateBmi(prefix = '') {
-            const height = parseFloat(document.getElementById('bmi-height' + prefix).value) / 100;
-            const weight = parseFloat(document.getElementById('bmi-weight' + prefix).value);
-            const res = document.getElementById('bmi-result' + prefix);
-
-            const heightValid = this.validateInput(document.getElementById('bmi-height' + prefix).value, 50, 300);
-            const weightValid = this.validateInput(document.getElementById('bmi-weight' + prefix).value, 20, 300);
-
-            if (!heightValid.valid) {
-                res.innerHTML = `<div class="error-message">${heightValid.message}</div>`;
-                return;
-            }
-            if (!weightValid.valid) {
-                res.innerHTML = `<div class="error-message">${weightValid.message}</div>`;
-                return;
-            }
-
-            const bmi = weight / (height * height);
-            let category = '';
-            if (bmi < 18.5) category = 'Underweight';
-            else if (bmi < 25) category = 'Normal weight';
-            else if (bmi < 30) category = 'Overweight';
-            else category = 'Obese';
-            res.innerHTML = `
-                <div class="success-message">
-                    Your BMI: <strong>${bmi.toFixed(1)}</strong><br>
-                    Category: <strong>${category}</strong>
-                </div>
-            `;
-        }
-
-        initBodyFatCalc(container) {
-            // No special init needed
-        }
-
-        calculateBodyFat(prefix = '') {
-            const gender = document.getElementById('bodyfat-gender' + prefix).value;
-            const age = parseFloat(document.getElementById('bodyfat-age' + prefix).value);
-            const weight = parseFloat(document.getElementById('bodyfat-weight' + prefix).value);
-            const height = parseFloat(document.getElementById('bodyfat-height' + prefix).value);
-            const neck = parseFloat(document.getElementById('bodyfat-neck' + prefix).value);
-            const waist = parseFloat(document.getElementById('bodyfat-waist' + prefix).value);
-            const hip = parseFloat(document.getElementById('bodyfat-hip' + prefix).value) || 0;
-            const res = document.getElementById('bodyfat-result' + prefix);
-
-            // Validate inputs
-            const ageValid = this.validateInput(age, 1, 120);
-            const weightValid = this.validateInput(weight, 20, 300);
-            const heightValid = this.validateInput(height, 50, 250);
-            const neckValid = this.validateInput(neck, 10, 60);
-            const waistValid = this.validateInput(waist, 30, 200);
-
-            if (!ageValid.valid || !weightValid.valid || !heightValid.valid || !neckValid.valid || !waistValid.valid) {
-                res.innerHTML = '<div class="error-message">Please enter all valid measurements.</div>';
-                return;
-            }
-
-            if (gender === 'female' && (!hip || hip <= 0)) {
-                res.innerHTML = '<div class="error-message">Please enter hip measurement for women.</div>';
-                return;
-            }
-
-            let bodyFat;
-            if (gender === 'male') {
-                // US Navy method for men
-                bodyFat = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
-            } else {
-                // US Navy method for women
-                bodyFat = 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387;
-            }
-
-            // Clamp values
-            bodyFat = Math.max(3, Math.min(bodyFat, 50));
-
-            let category = '';
-            if (gender === 'male') {
-                if (bodyFat < 6) category = 'Essential Fat';
-                else if (bodyFat < 14) category = 'Athlete';
-                else if (bodyFat < 18) category = 'Fitness';
-                else if (bodyFat < 25) category = 'Average';
-                else category = 'Obese';
-            } else {
-                if (bodyFat < 14) category = 'Essential Fat';
-                else if (bodyFat < 21) category = 'Athlete';
-                else if (bodyFat < 25) category = 'Fitness';
-                else if (bodyFat < 32) category = 'Average';
-                else category = 'Obese';
-            }
-
-            res.innerHTML = `
-                <div class="success-message">
-                    <strong>Body Fat Percentage: ${bodyFat.toFixed(1)}%</strong><br>
-                    Category: <strong>${category}</strong><br>
-                    Lean Body Mass: <strong>${(weight * (1 - bodyFat/100)).toFixed(1)} kg</strong><br>
-                    Fat Mass: <strong>${(weight * (bodyFat/100)).toFixed(1)} kg</strong>
-                </div>
-            `;
-        }
-
-        initWaterCalc(container) {
-            // No special init needed
-        }
-
-        calculateWater(prefix = '') {
-            const weight = parseFloat(document.getElementById('water-weight' + prefix).value);
-            const res = document.getElementById('water-result' + prefix);
-
-            const weightValid = this.validateInput(weight, 20, 300);
-            if (!weightValid.valid) {
-                res.innerHTML = `<div class="error-message">${weightValid.message}</div>`;
-                return;
-            }
-
-            const intake = weight * 0.033;
-            res.innerHTML = `<div class="success-message">
-                Recommended daily water intake: <strong>${(intake * 1000).toFixed(0)} ml</strong><br>
-                (or ${intake.toFixed(2)} liters)
-            </div>`;
-        }
-
-        initPasswordGen(container) {
-            // No special init needed
-        }
-
-        generatePassword(prefix = '') {
-            const len = parseInt(document.getElementById('pass-length' + prefix).value);
-            const uc = document.getElementById('pass-uppercase' + prefix).checked;
-            const lc = document.getElementById('pass-lowercase' + prefix).checked;
-            const n = document.getElementById('pass-numbers' + prefix).checked;
-            const s = document.getElementById('pass-symbols' + prefix).checked;
-            const res = document.getElementById('password-result' + prefix);
-
-            const lengthValid = this.validateInput(len, 8, 32);
-            if (!lengthValid.valid) {
-                res.innerHTML = `<div class="error-message">${lengthValid.message}</div>`;
-                return;
-            }
-
-            let charset = '';
-            if (uc) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            if (lc) charset += 'abcdefghijklmnopqrstuvwxyz';
-            if (n) charset += '0123456789';
-            if (s) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
-            if (charset === '') {
-                res.innerHTML = '<div class="error-message">Please select at least one character type.</div>';
-                return;
-            }
-            let pass = '';
-            for (let i = 0; i < len; i++) pass += charset.charAt(Math.floor(Math.random() * charset.length));
-            res.innerHTML = `<div class="success-message" style="font-family: monospace; word-break: break-all;">${pass}</div>`;
-        }
-
-        initRandomNumber(container) {
-            // No special init needed
-        }
-
-        generateRandomNumber(prefix = '') {
-            const min = parseInt(document.getElementById('min-val' + prefix).value);
-            const max = parseInt(document.getElementById('max-val' + prefix).value);
-            const res = document.getElementById('random-result' + prefix);
-            if (isNaN(min) || isNaN(max) || min >= max) {
-                res.innerHTML = '<div class="error-message">Please enter a valid min/max range.</div>';
-                return;
-            }
-            const num = Math.floor(Math.random() * (max - min + 1)) + min;
-            res.innerHTML = `<div class="success-message">Your random number is: <strong>${num}</strong></div>`;
-        }
-
-        // --- NEW CALCULATOR INITIALIZATION METHODS ---
-        initBottleneckCalc(container) {
-            // Set default date to today
-            const dateInput = container.querySelector('[id*="zodiac-date"]');
-            if (dateInput && !dateInput.value) {
-                const today = new Date();
-                dateInput.value = today.toISOString().split('T')[0];
-            }
-        }
-
-        initRecipeCalc(container) {
-            // No special initialization needed
-        }
-
-        initZodiacCalc(container) {
-            // Set default date to today
-            const dateInput = container.querySelector('[id*="zodiac-date"]');
-            if (dateInput && !dateInput.value) {
-                const today = new Date();
-                dateInput.value = today.toISOString().split('T')[0];
-            }
-        }
-
-        // --- NEWLY ADDED CALCULATOR INITIALIZATION METHODS ---
-        initAgeCalc(container) {
-            // Set default dates
-            const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
-
-            const birthInput = container.querySelector('[id*="age-birth"]');
-            const asofInput = container.querySelector('[id*="age-asof"]');
-
-            if (birthInput && !birthInput.value) {
-                // Set default birth date to 30 years ago
-                const defaultBirth = new Date();
-                defaultBirth.setFullYear(today.getFullYear() - 30);
-                birthInput.value = defaultBirth.toISOString().split('T')[0];
-            }
-
-            if (asofInput && !asofInput.value) {
-                asofInput.value = todayStr;
-            }
-        }
-
-        initDoseCalc(container) {
-            // No special initialization needed
-        }
-
-        // --- NEW CALCULATOR LOGIC METHODS ---
-        calculateBottleneck(prefix = '') {
-            const cpu = document.getElementById('bottleneck-cpu' + prefix).value.trim();
-            const gpu = document.getElementById('bottleneck-gpu' + prefix).value.trim();
-            const resolution = document.getElementById('bottleneck-resolution' + prefix).value;
-            const ram = parseInt(document.getElementById('bottleneck-ram' + prefix).value);
-            const res = document.getElementById('bottleneck-result' + prefix);
-
-            if (!cpu || !gpu) {
-                res.innerHTML = '<div class="error-message">Please enter both CPU and GPU models.</div>';
-                return;
-            }
-
-            // Simulated bottleneck calculation based on common knowledge
-            let bottleneckPercentage = 0;
-            let bottleneckComponent = '';
-            let severity = '';
-            let color = '';
-
-            // Simple simulation logic
-            const cpuScore = this.estimateCPUScore(cpu);
-            const gpuScore = this.estimateGPUScore(gpu);
-
-            const cpuPercent = (cpuScore / gpuScore) * 100;
-            const gpuPercent = (gpuScore / cpuScore) * 100;
-
-            if (cpuPercent < 85) {
-                bottleneckPercentage = Math.round(100 - cpuPercent);
-                bottleneckComponent = 'CPU';
-            } else if (gpuPercent < 85) {
-                bottleneckPercentage = Math.round(100 - gpuPercent);
-                bottleneckComponent = 'GPU';
-            } else {
-                bottleneckPercentage = 0;
-                bottleneckComponent = 'None';
-            }
-
-            // Adjust for resolution
-            if (resolution === '2160p') bottleneckPercentage = Math.max(0, bottleneckPercentage - 10);
-            if (resolution === '1080p') bottleneckPercentage = Math.max(0, bottleneckPercentage + 10);
-
-            // Adjust for RAM
-            if (ram < 16) bottleneckPercentage = Math.min(100, bottleneckPercentage + 15);
-
-            // Determine severity
-            if (bottleneckPercentage === 0) {
-                severity = 'No bottleneck - Balanced system';
-                color = '#2ecc71';
-            } else if (bottleneckPercentage < 10) {
-                severity = 'Minimal bottleneck';
-                color = '#27ae60';
-            } else if (bottleneckPercentage < 25) {
-                severity = 'Moderate bottleneck';
-                color = '#f39c12';
-            } else if (bottleneckPercentage < 40) {
-                severity = 'Significant bottleneck';
-                color = '#e74c3c';
-            } else {
-                severity = 'Severe bottleneck';
-                color = '#c0392b';
-            }
-
-            const recommendations = this.getBottleneckRecommendations(bottleneckComponent, bottleneckPercentage, resolution, ram);
-
-            res.innerHTML = `
-                <div class="success-message" style="border-left-color: ${color}">
-                    <strong>Bottleneck Analysis:</strong><br><br>
-                    <div style="font-size: 1.5em; color: ${color}">${bottleneckPercentage}% ${bottleneckComponent} Bottleneck</div>
-                    <strong>Severity:</strong> ${severity}<br>
-                    <strong>At Resolution:</strong> ${resolution}<br>
-                    <strong>With:</strong> ${ram}GB RAM<br><br>
-                    <strong>Recommendations:</strong><br>
-                    ${recommendations}
-                </div>
-            `;
-        }
-
-        calculateRecipe(prefix = '') {
-            const original = parseFloat(document.getElementById('recipe-original' + prefix).value);
-            const desired = parseFloat(document.getElementById('recipe-desired' + prefix).value);
-            const ingredients = document.getElementById('recipe-ingredients' + prefix).value;
-            const res = document.getElementById('recipe-result' + prefix);
-
-            if (isNaN(original) || isNaN(desired) || original <= 0 || desired <= 0) {
-                res.innerHTML = '<div class="error-message">Please enter valid serving numbers.</div>';
-                return;
-            }
-
-            if (!ingredients.trim()) {
-                res.innerHTML = '<div class="error-message">Please enter ingredients.</div>';
-                return;
-            }
-
-            const ratio = desired / original;
-            const ingredientLines = ingredients.split('\n');
-            let adjustedIngredients = '<strong>Adjusted Recipe for ' + desired + ' servings:</strong><br><br>';
-
-            ingredientLines.forEach(line => {
-                line = line.trim();
-                if (line) {
-                    const parts = line.match(/^(\d+(?:\.\d+)?)?\s*([a-zA-Z]*)?\s*(.+)$/);
-                    if (parts) {
-                        const amount = parts[1] ? parseFloat(parts[1]) : 1;
-                        const unit = parts[2] || '';
-                        const ingredient = parts[3] || '';
-
-                        if (!isNaN(amount)) {
-                            const newAmount = amount * ratio;
-                            adjustedIngredients += `• ${this.formatRecipeAmount(newAmount)} ${unit} ${ingredient}<br>`;
-                        } else {
-                            adjustedIngredients += `• ${line}<br>`;
-                        }
+                for(let word of words) {
+                    const testLine = line + word + ' ';
+                    const metrics = this.ctx.measureText(testLine);
+                    if(metrics.width > maxWidth && line !== '') {
+                        lines.push(line);
+                        line = word + ' ';
                     } else {
-                        adjustedIngredients += `• ${line}<br>`;
+                        line = testLine;
                     }
                 }
-            });
+                lines.push(line);
 
-            res.innerHTML = `
-                <div class="success-message">
-                    ${adjustedIngredients}
-                    <br>
-                    <em>Conversion ratio: ${ratio.toFixed(2)}x (${original} → ${desired} servings)</em>
-                </div>
-            `;
-        }
-
-        calculateZodiac(prefix = '') {
-            const birthDate = new Date(document.getElementById('zodiac-date' + prefix).value);
-            const res = document.getElementById('zodiac-result' + prefix);
-            const details = document.getElementById('zodiac-details' + prefix);
-
-            if (isNaN(birthDate.getTime())) {
-                res.innerHTML = '<div class="error-message">Please select a valid date.</div>';
-                details.innerHTML = '';
-                return;
-            }
-
-            const month = birthDate.getMonth() + 1;
-            const day = birthDate.getDate();
-
-            const zodiac = this.getZodiacSign(month, day);
-
-            if (!zodiac) {
-                res.innerHTML = '<div class="error-message">Could not determine zodiac sign.</div>';
-                details.innerHTML = '';
-                return;
-            }
-
-            res.innerHTML = `
-                <div class="success-message">
-                    <strong>Your Zodiac Sign:</strong><br>
-                    <div style="font-size: 2em; margin: 10px 0;">${zodiac.symbol} ${zodiac.name}</div>
-                    <strong>Date Range:</strong> ${zodiac.dateRange}<br>
-                    <strong>Element:</strong> ${zodiac.element}<br>
-                    <strong>Ruling Planet:</strong> ${zodiac.planet}
-                </div>
-            `;
-
-            details.innerHTML = `
-                <h3>${zodiac.name} Traits</h3>
-                <p><strong>Strengths:</strong> ${zodiac.strengths}</p>
-                <p><strong>Weaknesses:</strong> ${zodiac.weaknesses}</p>
-                <p><strong>Compatibility:</strong> ${zodiac.compatibility}</p>
-                <p><strong>Lucky Numbers:</strong> ${zodiac.luckyNumbers}</p>
-                <p><strong>Lucky Colors:</strong> ${zodiac.luckyColors}</p>
-            `;
-        }
-
-        // --- NEWLY ADDED CALCULATOR LOGIC METHODS ---
-        calculateAge(prefix = '') {
-            const birthDate = new Date(document.getElementById('age-birth' + prefix).value);
-            const asOfDate = new Date(document.getElementById('age-asof' + prefix).value);
-            const res = document.getElementById('age-result' + prefix);
-            const details = document.getElementById('age-details' + prefix);
-
-            if (isNaN(birthDate.getTime())) {
-                res.innerHTML = '<div class="error-message">Please select a valid birth date.</div>';
-                details.innerHTML = '';
-                return;
-            }
-
-            if (isNaN(asOfDate.getTime())) {
-                res.innerHTML = '<div class="error-message">Please select a valid "as of" date.</div>';
-                details.innerHTML = '';
-                return;
-            }
-
-            if (asOfDate < birthDate) {
-                res.innerHTML = '<div class="error-message">"As of" date must be after birth date.</div>';
-                details.innerHTML = '';
-                return;
-            }
-
-            // Calculate age
-            let years = asOfDate.getFullYear() - birthDate.getFullYear();
-            let months = asOfDate.getMonth() - birthDate.getMonth();
-            let days = asOfDate.getDate() - birthDate.getDate();
-
-            // Adjust for negative days
-            if (days < 0) {
-                months--;
-                // Get days in previous month
-                const prevMonth = new Date(asOfDate.getFullYear(), asOfDate.getMonth(), 0);
-                days += prevMonth.getDate();
-            }
-
-            // Adjust for negative months
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-
-            // Calculate total days
-            const diffTime = Math.abs(asOfDate - birthDate);
-            const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const totalWeeks = Math.floor(totalDays / 7);
-            const totalMonths = years * 12 + months;
-
-            // Calculate next birthday
-            const nextBirthday = new Date(birthDate);
-            nextBirthday.setFullYear(asOfDate.getFullYear());
-            if (nextBirthday < asOfDate) {
-                nextBirthday.setFullYear(asOfDate.getFullYear() + 1);
-            }
-            const daysToNextBirthday = Math.ceil((nextBirthday - asOfDate) / (1000 * 60 * 60 * 24));
-
-            // Calculate significant ages
-            const milestones = [];
-            const currentAge = years + months/12;
-
-            if (currentAge < 1) milestones.push({ age: 1, event: "First birthday", date: this.addYears(birthDate, 1) });
-            if (currentAge < 5) milestones.push({ age: 5, event: "Start kindergarten", date: this.addYears(birthDate, 5) });
-            if (currentAge < 13) milestones.push({ age: 13, event: "Becomes a teenager", date: this.addYears(birthDate, 13) });
-            if (currentAge < 16) milestones.push({ age: 16, event: "Can get driver's license (in some places)", date: this.addYears(birthDate, 16) });
-            if (currentAge < 18) milestones.push({ age: 18, event: "Becomes an adult", date: this.addYears(birthDate, 18) });
-            if (currentAge < 21) milestones.push({ age: 21, event: "Legal drinking age (in some countries)", date: this.addYears(birthDate, 21) });
-            if (currentAge < 30) milestones.push({ age: 30, event: "30th birthday", date: this.addYears(birthDate, 30) });
-            if (currentAge < 40) milestones.push({ age: 40, event: "40th birthday", date: this.addYears(birthDate, 40) });
-            if (currentAge < 50) milestones.push({ age: 50, event: "50th birthday (Golden Jubilee)", date: this.addYears(birthDate, 50) });
-            if (currentAge < 65) milestones.push({ age: 65, event: "Traditional retirement age", date: this.addYears(birthDate, 65) });
-            if (currentAge < 100) milestones.push({ age: 100, event: "Centennial birthday", date: this.addYears(birthDate, 100) });
-
-            res.innerHTML = `
-                <div class="success-message">
-                    <div style="font-size: 2em; margin: 10px 0; color: #833ab4;">
-                        ${years} years, ${months} months, ${days} days
-                    </div>
-                    <strong>As of:</strong> ${asOfDate.toLocaleDateString()}
-                </div>
-            `;
-
-            let milestonesHTML = '<h3>Age Breakdown</h3>';
-            milestonesHTML += `<p><strong>Total:</strong> ${totalDays} days (≈${totalWeeks} weeks, ≈${totalMonths} months)</p>`;
-            milestonesHTML += `<p><strong>Next birthday in:</strong> ${daysToNextBirthday} days</p>`;
-            milestonesHTML += `<p><strong>Next birthday date:</strong> ${nextBirthday.toLocaleDateString()}</p>`;
-
-            if (milestones.length > 0) {
-                milestonesHTML += '<h3>Upcoming Milestones</h3>';
-                milestones.forEach(milestone => {
-                    const yearsToGo = milestone.age - currentAge;
-                    const monthsToGo = Math.floor(yearsToGo * 12);
-                    milestonesHTML += `
-                        <p>
-                            <strong>${milestone.event} (Age ${milestone.age}):</strong><br>
-                            Date: ${milestone.date.toLocaleDateString()} <br>
-                            In approximately: ${Math.floor(yearsToGo)} years, ${monthsToGo % 12} months
-                        </p>
-                    `;
+                const startY = y - ((lines.length - 1) * lineHeight) / 2;
+                lines.forEach((line, i) => {
+                    this.ctx.fillText(line.trim(), x, startY + (i * lineHeight));
                 });
             }
 
-            details.innerHTML = milestonesHTML;
-        }
-
-        calculateDose(prefix = '') {
-            const weight = parseFloat(document.getElementById('dose-weight' + prefix).value);
-            const weightUnit = document.getElementById('dose-weight-unit' + prefix).value;
-            const concentration = parseFloat(document.getElementById('dose-concentration' + prefix).value);
-            const concentrationUnit = document.getElementById('dose-concentration-unit' + prefix).value;
-            const perKg = parseFloat(document.getElementById('dose-perkg' + prefix).value);
-            const perKgUnit = document.getElementById('dose-perkg-unit' + prefix).value;
-            const frequency = parseInt(document.getElementById('dose-frequency' + prefix).value);
-            const res = document.getElementById('dose-result' + prefix);
-
-            // Validate inputs
-            if (isNaN(weight) || isNaN(concentration) || isNaN(perKg) || isNaN(frequency)) {
-                res.innerHTML = '<div class="error-message">Please enter all required values.</div>';
-                return;
+            // Makes a color lighter or darker (used for gradients)
+            adjustColor(hex, percent) {
+                const num = parseInt(hex.replace('#', ''), 16);
+                const amt = Math.round(2.55 * percent);
+                const R = (num >> 16) + amt;
+                const G = (num >> 8 & 0x00FF) + amt;
+                const B = (num & 0x0000FF) + amt;
+                return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                    (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                    (B < 255 ? B < 1 ? 0 : B : 255))
+                    .toString(16).slice(1);
             }
 
-            if (weight <= 0 || concentration <= 0 || perKg <= 0 || frequency <= 0) {
-                res.innerHTML = '<div class="error-message">All values must be greater than zero.</div>';
-                return;
+            // ========== RANDOM DESIGN ==========
+            randomize() {
+                const templates = ['quote', 'announcement', 'tips', 'story', 'sale', 'minimal'];
+                const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+                
+                document.querySelector('.template-btn.active').classList.remove('active');
+                document.querySelector(`[data-template="${randomTemplate}"]`).classList.add('active');
+                this.currentTemplate = randomTemplate;
+
+                const colors = ['#833ab4', '#fd1d1d', '#fcb045', '#667eea', '#764ba2', '#f093fb', '#00c6ff'];
+                document.getElementById('bgColor').value = colors[Math.floor(Math.random() * colors.length)];
+                
+                const textColors = ['#ffffff', '#000000', '#2c3e50'];
+                document.getElementById('textColor').value = textColors[Math.floor(Math.random() * textColors.length)];
+
+                document.getElementById('mainFontSize').value = Math.floor(Math.random() * 60) + 40;
+                document.getElementById('subFontSize').value = Math.floor(Math.random() * 30) + 20;
+                
+                document.getElementById('mainFontSizeValue').textContent = document.getElementById('mainFontSize').value;
+                document.getElementById('subFontSizeValue').textContent = document.getElementById('subFontSize').value;
+
+                const randomTexts = {
+                    main: [
+                        "Success begins with a step",
+                        "Dream big, work hard",
+                        "Create your own path",
+                        "Make it happen today",
+                        "Believe in yourself"
+                    ],
+                    sub: [
+                        "Every day is a new opportunity for creativity",
+                        "Turn your dreams into reality",
+                        "The journey of a thousand miles begins with one step",
+                        "Your limitation—it's only your imagination",
+                        "Great things never come from comfort zones"
+                    ]
+                };
+                
+                document.getElementById('mainText').value = randomTexts.main[Math.floor(Math.random() * randomTexts.main.length)];
+                document.getElementById('subText').value = randomTexts.sub[Math.floor(Math.random() * randomTexts.sub.length)];
+
+                this.generateTemplate();
+                this.showNotification('Random design created');
             }
 
-            // Convert weight to kg if needed
-            let weightInKg = weight;
-            if (weightUnit === 'lbs') {
-                weightInKg = weight * 0.453592; // Convert lbs to kg
-            }
-
-            // Calculate total daily dose
-            let totalDailyDose = weightInKg * perKg;
-
-            // Adjust unit conversions if needed
-            if (perKgUnit === 'mcg' && (concentrationUnit === 'mg/ml' || concentrationUnit === 'mg/tablet')) {
-                totalDailyDose /= 1000; // Convert mcg to mg
-            } else if (perKgUnit === 'g' && concentrationUnit === 'mg/ml') {
-                totalDailyDose *= 1000; // Convert g to mg
-            }
-
-            // Calculate single dose
-            const singleDose = totalDailyDose / frequency;
-
-            // Calculate volume or tablets needed
-            let dosePerAdministration = '';
-            let doseUnit = '';
-
-            if (concentrationUnit === 'mg/ml' || concentrationUnit === 'mcg/ml' || concentrationUnit === 'g/ml') {
-                const concentrationValue = concentration;
-                let concentrationInMg = concentrationValue;
-
-                // Convert concentration to mg for consistency
-                if (concentrationUnit === 'mcg/ml') {
-                    concentrationInMg = concentrationValue / 1000;
-                } else if (concentrationUnit === 'g/ml') {
-                    concentrationInMg = concentrationValue * 1000;
+            // ========== DOWNLOAD IMAGE ==========
+            downloadImage() {
+                try {
+                    const link = document.createElement('a');
+                    link.download = `instagram-template-${Date.now()}.png`;
+                    link.href = this.canvas.toDataURL('image/png', 1.0);
+                    link.click();
+                    this.showNotification('Image downloaded successfully');
+                } catch (e) {
+                    console.error('Error downloading image:', e);
+                    this.showNotification('Error downloading image');
                 }
-
-                const volume = singleDose / concentrationInMg;
-                dosePerAdministration = volume.toFixed(2);
-                doseUnit = 'ml per dose';
-            } else if (concentrationUnit === 'mg/tablet') {
-                const tablets = singleDose / concentration;
-                dosePerAdministration = tablets.toFixed(2);
-                doseUnit = 'tablet(s) per dose';
             }
 
-            // Calculate total daily administration
-            const totalDaily = singleDose * frequency;
-            let totalDailyDisplay = '';
-            let totalDailyUnit = '';
-
-            if (concentrationUnit === 'mg/ml' || concentrationUnit === 'mcg/ml' || concentrationUnit === 'g/ml') {
-                const concentrationValue = concentration;
-                let concentrationInMg = concentrationValue;
-
-                if (concentrationUnit === 'mcg/ml') {
-                    concentrationInMg = concentrationValue / 1000;
-                } else if (concentrationUnit === 'g/ml') {
-                    concentrationInMg = concentrationValue * 1000;
+            // ========== SHARE IMAGE OR COPY TO CLIPBOARD ==========
+            async shareImage() {
+                try {
+                    const blob = await new Promise(resolve => this.canvas.toBlob(resolve, 'image/png', 1.0));
+                    const file = new File([blob], `instagram-template-${Date.now()}.png`, { type: 'image/png' });
+                    
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: 'Instagram Template',
+                            text: 'Check out this amazing design!'
+                        });
+                        this.showNotification('Shared successfully');
+                    } else if (navigator.clipboard) {
+                        const item = new ClipboardItem({ 'image/png': blob });
+                        await navigator.clipboard.write([item]);
+                        this.showNotification('Image copied to clipboard');
+                    } else {
+                        this.downloadImage();
+                    }
+                } catch (error) {
+                    console.error('Error sharing:', error);
+                    this.downloadImage();
                 }
-
-                const totalVolume = totalDaily / concentrationInMg;
-                totalDailyDisplay = totalVolume.toFixed(2);
-                totalDailyUnit = 'ml total daily';
-            } else if (concentrationUnit === 'mg/tablet') {
-                const totalTablets = totalDaily / concentration;
-                totalDailyDisplay = totalTablets.toFixed(2);
-                totalDailyUnit = 'tablet(s) total daily';
             }
-
-            // Generate schedule
-            let schedule = '';
-            const intervals = {
-                1: ['Morning'],
-                2: ['Morning', 'Evening'],
-                3: ['Morning', 'Afternoon', 'Evening'],
-                4: ['Morning', 'Noon', 'Evening', 'Bedtime'],
-                6: ['6 AM', '10 AM', '2 PM', '6 PM', '10 PM', '2 AM'],
-                8: ['3 AM', '6 AM', '9 AM', '12 PM', '3 PM', '6 PM', '9 PM', '12 AM'],
-                12: ['Every 2 hours starting at 6 AM']
-            };
-
-            if (schedule[frequency]) {
-                schedule = `Suggested schedule: ${schedule[frequency].join(', ')}`;
-            }
-
-            res.innerHTML = `
-                <div class="success-message">
-                    <h3>Dosage Calculation Results</h3>
-
-                    <p><strong>Patient Weight:</strong> ${weight} ${weightUnit} (${weightInKg.toFixed(2)} kg)</p>
-                    <p><strong>Single Dose:</strong> ${dosePerAdministration} ${doseUnit}</p>
-                    <p><strong>Total Daily:</strong> ${totalDailyDisplay} ${totalDailyUnit}</p>
-                    <p><strong>Frequency:</strong> ${frequency} times daily</p>
-                    <p><strong>Single Dose Amount:</strong> ${singleDose.toFixed(2)} mg</p>
-                    <p><strong>Total Daily Amount:</strong> ${totalDaily.toFixed(2)} mg</p>
-
-                    ${schedule ? `<p><strong>${schedule}</strong></p>` : ''}
-
-                    <div style="margin-top: 15px; padding: 10px; background: #e8f4fd; border-radius: 5px; border-left: 4px solid #2196F3;">
-                        <strong>💡 Important Notes:</strong>
-                        <ul style="margin: 5px 0; padding-left: 20px;">
-                            <li>Always double-check calculations</li>
-                            <li>Verify with healthcare professional</li>
-                            <li>Consider patient's renal/hepatic function</li>
-                            <li>Check for drug interactions</li>
-                        </ul>
-                    </div>
-                </div>
-            `;
         }
 
-        // --- Helper methods for new calculators ---
-        estimateCPUScore(cpuModel) {
-            const cpuScores = {
-                'i9-13900K': 100, 'i7-12700K': 85, 'i5-12600K': 70,
-                '7950X': 98, '7700X': 82, '7600X': 68
-            };
-
-            for (const [key, score] of Object.entries(cpuScores)) {
-                if (cpuModel.includes(key)) return score;
-            }
-            return 75; // Default average score
-        }
-
-        estimateGPUScore(gpuModel) {
-            const gpuScores = {
-                'RTX 4090': 100, 'RTX 4080': 85, 'RTX 4070 Ti': 70,
-                '7900 XTX': 90, '7900 XT': 80, '7800 XT': 65
-            };
-
-            for (const [key, score] of Object.entries(gpuScores)) {
-                if (gpuModel.includes(key)) return score;
-            }
-            return 75; // Default average score
-        }
-
-        getBottleneckRecommendations(component, percentage, resolution, ram) {
-            let rec = '';
-
-            if (component === 'CPU' && percentage > 15) {
-                rec += '• Consider upgrading your CPU<br>';
-                rec += '• Lower in-game settings that stress CPU<br>';
-                rec += '• Increase resolution to shift load to GPU<br>';
-            } else if (component === 'GPU' && percentage > 15) {
-                rec += '• Consider upgrading your GPU<br>';
-                rec += '• Lower graphics settings/resolution<br>';
-                rec += '• Enable DLSS/FSR if available<br>';
-            } else {
-                rec += '• Your system is well-balanced<br>';
-                rec += '• Consider upgrading both CPU and GPU for better performance<br>';
-            }
-
-            if (ram < 16) {
-                rec += '• Upgrade to at least 16GB RAM<br>';
-            }
-
-            if (resolution === '1080p' && percentage > 20) {
-                rec += '• Consider moving to 1440p resolution<br>';
-            }
-
-            return rec;
-        }
-
-        formatRecipeAmount(amount) {
-            if (amount < 0.25) return 'a pinch of';
-            if (amount < 0.33) return '⅛';
-            if (amount < 0.5) return '¼';
-            if (amount < 0.66) return '⅓';
-            if (amount < 0.75) return '½';
-            if (amount < 1.25) return '¾';
-            if (amount < 1.33) return '1';
-            if (amount < 1.5) return '1¼';
-            if (amount < 1.66) return '1⅓';
-            if (amount < 1.75) return '1½';
-            if (amount < 2) return '1¾';
-
-            // Round to 2 decimal places for larger amounts
-            return Math.round(amount * 100) / 100;
-        }
-
-        getZodiacSign(month, day) {
-            const zodiacSigns = [
-                { name: 'Capricorn', symbol: '♑', dateRange: 'Dec 22 - Jan 19', element: 'Earth', planet: 'Saturn',
-                  strengths: 'Responsible, disciplined, self-controlled', weaknesses: 'Know-it-all, unforgiving, condescending',
-                  compatibility: 'Taurus, Virgo', luckyNumbers: '4, 8, 13, 22', luckyColors: 'Brown, Black' },
-
-                { name: 'Aquarius', symbol: '♒', dateRange: 'Jan 20 - Feb 18', element: 'Air', planet: 'Uranus',
-                  strengths: 'Progressive, original, independent', weaknesses: 'Runs from emotional expression, temperamental',
-                  compatibility: 'Gemini, Libra', luckyNumbers: '4, 7, 11, 22', luckyColors: 'Blue, Silver' },
-
-                { name: 'Pisces', symbol: '♓', dateRange: 'Feb 19 - Mar 20', element: 'Water', planet: 'Neptune',
-                  strengths: 'Compassionate, artistic, intuitive', weaknesses: 'Fearful, overly trusting, sad',
-                  compatibility: 'Cancer, Scorpio', luckyNumbers: '3, 9, 12, 15', luckyColors: 'Sea Green, Purple' },
-
-                { name: 'Aries', symbol: '♈', dateRange: 'Mar 21 - Apr 19', element: 'Fire', planet: 'Mars',
-                  strengths: 'Courageous, determined, confident', weaknesses: 'Impatient, moody, short-tempered',
-                  compatibility: 'Leo, Sagittarius', luckyNumbers: '1, 8, 17', luckyColors: 'Red, White' },
-
-                { name: 'Taurus', symbol: '♉', dateRange: 'Apr 20 - May 20', element: 'Earth', planet: 'Venus',
-                  strengths: 'Reliable, patient, practical', weaknesses: 'Stubborn, possessive, uncompromising',
-                  compatibility: 'Virgo, Capricorn', luckyNumbers: '2, 6, 9, 12', luckyColors: 'Green, Pink' },
-
-                { name: 'Gemini', symbol: '♊', dateRange: 'May 21 - Jun 20', element: 'Air', planet: 'Mercury',
-                  strengths: 'Gentle, affectionate, curious', weaknesses: 'Nervous, inconsistent, indecisive',
-                  compatibility: 'Libra, Aquarius', luckyNumbers: '5, 7, 14, 23', luckyColors: 'Yellow, Light Blue' },
-
-                { name: 'Cancer', symbol: '♋', dateRange: 'Jun 21 - Jul 22', element: 'Water', planet: 'Moon',
-                  strengths: 'Tenacious, highly imaginative, loyal', weaknesses: 'Moody, pessimistic, suspicious',
-                  compatibility: 'Scorpio, Pisces', luckyNumbers: '2, 3, 15, 20', luckyColors: 'White, Silver' },
-
-                { name: 'Leo', symbol: '♌', dateRange: 'Jul 23 - Aug 22', element: 'Fire', planet: 'Sun',
-                  strengths: 'Creative, passionate, generous', weaknesses: 'Arrogant, stubborn, self-centered',
-                  compatibility: 'Aries, Sagittarius', luckyNumbers: '1, 3, 10, 19', luckyColors: 'Gold, Orange' },
-
-                { name: 'Virgo', symbol: '♍', dateRange: 'Aug 23 - Sep 22', element: 'Earth', planet: 'Mercury',
-                  strengths: 'Loyal, analytical, kind', weaknesses: 'Worries, critical, harsh',
-                  compatibility: 'Taurus, Capricorn', luckyNumbers: '5, 14, 15, 23', luckyColors: 'Navy Blue, Beige' },
-
-                { name: 'Libra', symbol: '♎', dateRange: 'Sep 23 - Oct 22', element: 'Air', planet: 'Venus',
-                  strengths: 'Cooperative, diplomatic, gracious', weaknesses: 'Indecisive, avoids confrontations',
-                  compatibility: 'Gemini, Aquarius', luckyNumbers: '4, 6, 13, 15', luckyColors: 'Blue, Pink' },
-
-                { name: 'Scorpio', symbol: '♏', dateRange: 'Oct 23 - Nov 21', element: 'Water', planet: 'Pluto',
-                  strengths: 'Resourceful, brave, passionate', weaknesses: 'Distrusting, jealous, secretive',
-                  compatibility: 'Cancer, Pisces', luckyNumbers: '8, 11, 18, 22', luckyColors: 'Red, Black' },
-
-                { name: 'Sagittarius', symbol: '♐', dateRange: 'Nov 22 - Dec 21', element: 'Fire', planet: 'Jupiter',
-                  strengths: 'Generous, idealistic, great sense of humor', weaknesses: 'Promises more than can deliver',
-                  compatibility: 'Aries, Leo', luckyNumbers: '3, 7, 9, 12', luckyColors: 'Purple, Blue' }
-            ];
-
-            if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return zodiacSigns[1]; // Aquarius
-            if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return zodiacSigns[2]; // Pisces
-            if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return zodiacSigns[3]; // Aries
-            if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return zodiacSigns[4]; // Taurus
-            if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return zodiacSigns[5]; // Gemini
-            if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return zodiacSigns[6]; // Cancer
-            if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return zodiacSigns[7]; // Leo
-            if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return zodiacSigns[8]; // Virgo
-            if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return zodiacSigns[9]; // Libra
-            if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return zodiacSigns[10]; // Scorpio
-            if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return zodiacSigns[11]; // Sagittarius
-            return zodiacSigns[0]; // Capricorn (default)
-        }
-
-        // --- Helper methods for Age Calculator ---
-        addYears(date, years) {
-            const result = new Date(date);
-            result.setFullYear(result.getFullYear() + years);
-            return result;
-        }
-
-        // --- Input Validation ---
-        validateInput(input, min, max) {
-            const value = parseFloat(input);
-            if (isNaN(value)) return { valid: false, message: 'Please enter a valid number' };
-            if (min !== undefined && value < min) return { valid: false, message: `Value must be at least ${min}` };
-            if (max !== undefined && value > max) return { valid: false, message: `Value must be at most ${max}` };
-            return { valid: true, value };
-        }
-    }
-
-    // Initialize the app
-    let appController, calcManager;
-    window.addEventListener('load', () => {
-        appController = new AppController();
-        calcManager = appController.calcManager;
-        window.calcManager = calcManager; // Make accessible for onclick handlers
-
-        // Setup floating calculator close button
-        const floatingCloseBtn = document.getElementById('floatingCloseBtn');
-        if (floatingCloseBtn) {
-            floatingCloseBtn.addEventListener('click', () => {
-                document.getElementById('floatingCalc').classList.remove('active');
-            });
-        }
-    });
-</script>
+        // Start the app when page loads
+        window.addEventListener('load', () => {
+            new InstagramTemplateGenerator();
+        });
+    </script>
 </body>
 </html>
